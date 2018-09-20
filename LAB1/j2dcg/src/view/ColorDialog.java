@@ -40,6 +40,7 @@ import model.Pixel;
 public class ColorDialog extends JDialog {
 	private JButton okButton;
 	private RGBColorMediator rgbMediator;
+	private HSVColorMediator HSVMediator;
 	private ActionListener okActionListener;
 	private ColorDialogResult result;
 	
@@ -70,6 +71,9 @@ public class ColorDialog extends JDialog {
 		JPanel hsvPanel = createHSVPanel(result, imageWidths);
 		tabbedPane.addTab("HSV", hsvPanel);
 		
+		JPanel YCBCRPanel = createYCBCRPanel(result, imageWidths);
+		tabbedPane.addTab("YCBCR", YCBCRPanel);
+		
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new BoxLayout(buttonsPanel, BoxLayout.X_AXIS));
 		AbstractAction okAction = new AbstractAction("OK") {
@@ -96,6 +100,7 @@ public class ColorDialog extends JDialog {
 	}
 
 	private JPanel createRGBPanel(ColorDialogResult result, int imageWidths) {	
+		
 		rgbMediator = new RGBColorMediator(result, imageWidths, 30);
 		
 		JPanel panel = new JPanel();
@@ -122,10 +127,21 @@ public class ColorDialog extends JDialog {
 		return panel;
 	}
 	
-	private JPanel createHSVPanel(ColorDialogResult result, int imageWidths) {	
+	private JPanel createHSVPanel(ColorDialogResult result, int imageWidths) {
+		System.out.println(imageWidths);
+		
+		HSVMediator = new HSVColorMediator(result, imageWidths, 30);
+		JPanel panel = new JPanel();
+		ColorSlider HueCS = new ColorSlider("H:", result.getPixel().getRed(), HSVMediator.getHueImage());
+		panel.add(HueCS);
+		return panel;
+		
+		
+	}
+	private JPanel createYCBCRPanel(ColorDialogResult result, int imageWidths) {	
 		JPanel panel = new JPanel();
 		
 		return panel;
-	}
+}
 }
 
