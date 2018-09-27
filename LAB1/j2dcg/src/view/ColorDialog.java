@@ -33,7 +33,7 @@ import model.Pixel;
  * <p>Title: ColorDialog</p>
  * <p>Description: ... (JDialog)</p>
  * <p>Copyright: Copyright (c) 2003 Mohammed Elghaouat, Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.7 $
  */
@@ -132,8 +132,18 @@ public class ColorDialog extends JDialog {
 		
 		HSVMediator = new HSVColorMediator(result, imageWidths, 30);
 		JPanel panel = new JPanel();
-		ColorSlider HueCS = new ColorSlider("H:", result.getPixel().getRed(), HSVMediator.getHueImage());
+		ColorSlider HueCS = new ColorSlider("H:", 0, HSVMediator.getHueImage());
+		ColorSlider SaturationCS = new ColorSlider("S:", 0, HSVMediator.getSaturationImage());
+		ColorSlider ValueCS = new ColorSlider("V:", 0, HSVMediator.getValueImage());
+
+		HSVMediator.setHueCS(HueCS);
+		HSVMediator.setSaturationCS(SaturationCS);
+		HSVMediator.setValueCS(ValueCS);
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(HueCS);
+		panel.add(SaturationCS);
+		panel.add(ValueCS);
 		return panel;
 		
 		
