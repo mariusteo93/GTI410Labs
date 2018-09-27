@@ -18,12 +18,16 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 	int red;
 	int green;
 	int blue;
-	double hue;
-	double saturation;
-	double value;
+	int hue;
+	int saturation;
+	int value;
+	int HueDivision = (int) Math.round ((double) hue / (360 / 255));
+	int SaturationDivision = (int) Math.round ((double) saturation / (100 / 255));
+	int ValueDivision = (int) Math.round ((double) value / (100 / 255));
 
-	
-	
+
+
+
 	HSVColorMediator(ColorDialogResult result, int imagesWidth, int imagesHeight){
 		this.imagesWidth = imagesWidth;
 		this.imagesHeight = imagesHeight;
@@ -37,10 +41,11 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 		SaturationImage = new BufferedImage(imagesWidth, imagesHeight, BufferedImage.TYPE_INT_ARGB);
 		ValueImage = new BufferedImage(imagesWidth, imagesHeight, BufferedImage.TYPE_INT_ARGB);
 
-		double [] ArrayHsv = convertToRGB(red,green,blue);
+		int [] ArrayHsv = convertToHSV(red,green,blue);
 		this.hue = ArrayHsv[0];
 		this.saturation = ArrayHsv[1];
 		this.value = ArrayHsv[2];
+
 
 		this.result = result;
 		result.addObserver(this);
@@ -51,37 +56,66 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 		computeValueImage(hue, saturation, value);
 
 	}
+	public int getHueDivision(){
+		return HueDivision;
+	}
+	public int getSaturationDivision(){
+		return SaturationDivision;
+	}
+	public int getValueDivision(){
+		return ValueDivision;
+	}
 
 	public void update(ColorSlider s, int v) {
 		boolean updateHue = false;
 		boolean updateSaturation = false;
 		boolean updateValue = false;
-		if (s == hueCS && v != hue) {
-			hue = v;
-			updateSaturation = true;
-			updateValue = true;
+		int hueCalculation;
+		int saturationCalculation;
+		int valueCalculation;
+
+		if (s == hueCS) {
+			hueCalculation=(int) Math.round((double) v * (360 / 255));
+			if (hueCalculation !=hue){
+				this.hue= hueCalculation;
+				updateSaturation = true;
+				updateValue = true;
+			}
+
 		}
-		if (s == saturationCS && v != saturation) {
-			saturation = v;
-			updateHue = true;
-			updateValue = true;
+		if (s == saturationCS) {
+			saturationCalculation=(int) Math.round((double)v * (100 / 255));
+			if (this.saturation !=saturationCalculation){
+
+				this.saturation=saturationCalculation;
+				updateHue = true;
+				updateValue = true;
+			}
+
 		}
-		if (s == valueCS && v != value) {
-			value = v;
-			updateHue = true;
-			updateSaturation = true;
-		}
-		if (updateHue) {
-			computeHueImage(red, green, blue);
-		}
-		if (updateSaturation) {
-			computeSaturationImage(red, green, blue);
-		}
-		if (updateValue) {
-			computeValueImage(red, green, blue);
+		if (s == valueCS) {
+			valueCalculation=(int) Math.round((double)v * (100 / 255));
+			if (this.value !=valueCalculation){
+
+				this.value=valueCalculation;
+				updateHue = true;
+				updateSaturation = true;
+			}
+
 		}
 
-		Pixel pixel = new Pixel(red, green, blue);
+		if (updateHue) {
+			computeHueImage(hue, saturation, value);
+		}
+		if (updateSaturation) {
+			computeSaturationImage(hue, saturation, value);
+		}
+		if (updateValue) {
+			computeValueImage(hue, saturation, value);
+		}
+
+		double [] rgb = convertToRGB(hue,saturation,value);
+		Pixel pixel = new Pixel((int) rgb [0], (int) rgb [1], (int) rgb [2],255);
 		result.setPixel(pixel);
 	}
 /*
@@ -148,15 +182,20 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 		
 	}
 	*/
-public void computeHueImage(double hue, double saturation, double value) {
-	Pixel p = new Pixel(red, green, blue);
+public void computeHueImage(int hue, int saturation , int value) {
+
 	double[] rgb = convertToRGB(hue, saturation, value);
 
+	Pixel p = new Pixel((int) rgb[0], (int) rgb[1], (int) rgb[2], 255);
+	int temp;
 	for (int i = 0; i<imagesWidth; ++i) {
-		hue = (int)(((double)i / (double)imagesWidth) * 255.0);
-		p.setRed((int)rgb[0]);
-		p.setGreen((int)rgb[1]);
-		p.setBlue((int)rgb[2]);
+		temp = (int) Math.round(((double) i  / (double)imagesWidth) * 360);
+
+		//hue = (int)(((double)i / (double)imagesWidth) * 255.0);
+
+		p.setRed((int)convertToRGB(temp,saturation,value)[0]);
+		p.setGreen((int)convertToRGB(temp,saturation,value)[1]);
+		p.setBlue((int)convertToRGB(temp,saturation,value)[2]);
 
 		int rgbColor = p.getARGB();
 
@@ -170,22 +209,27 @@ public void computeHueImage(double hue, double saturation, double value) {
 	}
 }
 
-	public void computeSaturationImage(double hue, double saturation, double value ){
+	public void computeSaturationImage(int hue, int  saturation, int  value ){
 		//Pixel p = new Pixel(red, green, blue,255);
 		//BufferedImage hueImage = getHueImage();
 		//ColorSlider HueCs = getColorHueCs();
 		//int valeur = HueCs.getValue();
 
-		Pixel p = new Pixel(red, green, blue);
+		double[] rgb = convertToRGB(hue, saturation, value);
 
-		double [] rgb = new double [3];
+		Pixel p = new Pixel((int) rgb[0], (int) rgb[1], (int) rgb[2], 255);
+		int temp;
 		for (int i = 0; i<imagesWidth; ++i) {
-			saturation = (int)(((double)i / (double)imagesWidth) * 255.0);
-			rgb = convertToRGB(hue, saturation, value);
-			p.setRed((int)rgb[0]);
-			p.setGreen((int)rgb[1]);
-			p.setBlue((int)rgb[2]);
+			temp = (int) Math.round(((double) i  / (double)imagesWidth) * 100);
+
+			//hue = (int)(((double)i / (double)imagesWidth) * 255.0);
+
+			p.setRed((int)convertToRGB(hue,temp,value)[0]);
+			p.setGreen((int)convertToRGB(hue,temp,value)[1]);
+			p.setBlue((int)convertToRGB(hue,temp,value)[2]);
+
 			int rgbColor = p.getARGB();
+
 			for (int j = 0; j<imagesHeight; ++j) {
 				SaturationImage.setRGB(i, j, rgbColor);
 			}
@@ -194,44 +238,58 @@ public void computeHueImage(double hue, double saturation, double value) {
 		if (saturationCS != null) {
 			saturationCS.update(SaturationImage);
 		}
-
-
-
 	}
-	public void computeValueImage(double hue, double saturation, double value ){
+	public void computeValueImage(int hue, int saturation, int value ) {
 
-		Pixel p = new Pixel(red, green, blue);
+		double[] rgb = convertToRGB(hue, saturation, value);
 
-		double [] rgb = new double[3];
-		for (int i = 0; i<imagesWidth; ++i) {
-			value = (int)(((double)i / (double)imagesWidth) * 255.0);
-			rgb = convertToRGB(hue, saturation, value);
+		Pixel p = new Pixel((int) rgb[0], (int) rgb[1], (int) rgb[2], 255);
+		int temp;
+		for (int i = 0; i < imagesWidth; ++i) {
+			temp = (int) Math.round(((double) i / (double) imagesWidth) * 100);
 
-			p.setRed((int)rgb[0]);
-			p.setGreen((int)rgb[1]);
-			p.setBlue((int)rgb[2]);
+			//hue = (int)(((double)i / (double)imagesWidth) * 255.0);
+
+			p.setRed((int) convertToRGB(hue, saturation, temp)[0]);
+			p.setGreen((int) convertToRGB(hue, saturation, temp)[1]);
+			p.setBlue((int) convertToRGB(hue, saturation, temp)[2]);
 
 			int rgbColor = p.getARGB();
 
-			for (int j = 0; j<imagesHeight; ++j) {
+			for (int j = 0; j < imagesHeight; ++j) {
 				ValueImage.setRGB(i, j, rgbColor);
 			}
 		}
-		if (valueCS != null) {
-			valueCS.update(ValueImage);
-		}
-	}
-		
 
-	private static double [] convertToRGB(double H, double S, double V){
+
+			if (valueCS != null) {
+				valueCS.update(ValueImage);
+			}
+
+	}
+	// 353.0 0.0 0.98 to 353 0 98
+	private static double [] convertToRGB(int H, int S, int V){
 		double rgb []= new double [3];
 
-		double C = V * S;
+		double Sprime = (double)S / 100;
+		System.out.println("SPrime:"+ Sprime);
 
-		double X =   C * (1 - Math.abs((H/60) % 2 - 1 ) );
+		double Vprime = (double)  V /100;
 
+		System.out.println("VPrime:"+ Vprime);
 
-		double m = V - C;
+		double C = Sprime * Vprime;
+		System.out.println("C:"+ C);
+
+		double XPrime = (1.0 - Math.abs(((double)H/60) % 2 - 1.0 ) );
+
+		System.out.println("xPrime:"+ XPrime);
+
+		double X =   C * XPrime ;
+
+		System.out.println("X:"+ X);
+
+		double m = Vprime - C;
 
 		if (H >= 0 && H < 60) {
 
@@ -271,22 +329,22 @@ public void computeHueImage(double hue, double saturation, double value) {
 		}
 
 
-		rgb[0]= (int) ((rgb[0]+ m) *255);
-		rgb[1]= (int) ((rgb[1]+ m) *255);
-		rgb[2]= (int) ((rgb[2]+ m) *255);
+		rgb[0]= (int) Math.round((rgb[0]+ m) *255);
+		rgb[1]= (int) Math.round((rgb[1]+ m) *255);
+		rgb[2]= (int) Math.round((rgb[2]+ m) *255);
 
 		return rgb;
 
 
 	}
 
-	private  double [] convertToHSV(double red, double green, double blue){
-		double [] hsv = new double [3];
-		double M = Math.max(red, Math.max(green, blue));
+	private static int [] convertToHSV(int red, int green, int blue){
+		int [] hsv = new int [3];
+		int M = Math.max(red, Math.max(green, blue));
 		//System.out.println(M);
-		double m = Math.min(red, Math.min(green, blue));
+		int m = Math.min(red, Math.min(green, blue));
 		//System.out.println(m);
-		double c = M - m;
+		int c = M - m;
 		double hPrime = 0;
 		double H = 0;;
 		double saturation = 0;
@@ -294,51 +352,61 @@ public void computeHueImage(double hue, double saturation, double value) {
 		if (c == 0){
 			hPrime = 0;
 		}else if (M == red){
-			double avantMod= (green - blue) / c;
+			double avantMod= (double)(green - blue) / c;
 			hPrime =  avantMod % 6;
+			System.out.println(hPrime);
 		}else if (M == green){
-			hPrime = (blue - red)/ c + 2;
+			hPrime = (double) (blue - red)/ c + 2;
 		}else if ( M == blue){
-			hPrime = (red - green)/c + 4;
+			hPrime = (double)(red - green)/c + 4;
 		}
 
 		H = hPrime * 60;
+		System.out.println(H);
 		double value =  M ;
 
 		if ( c == 0) {
 			saturation = 0;
 		}else{
-			saturation = c / value;
+			saturation = (c / value) * 100 ;
 		}
 
-		value = value /255;
+		value = (value /255) *100;
 
 		if (H < 0) {
 			H += 360;
 		}
-		hsv [0] = H;
-		hsv [1] = saturation;
-		hsv [2] = value;
+		hsv [0]= (int) H;
+		hsv [1] = (int) saturation;
+		hsv [2] = (int) value;
 
 		return hsv;
 	}
-
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		// When updated with the new "result" color, if the "currentColor"
 		// is aready properly set, there is no need to recompute the images.
-		Pixel currentColor = new Pixel(red, green, blue, 255);
-		if(currentColor.getARGB() == result.getPixel().getARGB()) return;
+		double[] rgb = convertToRGB(this.hue,this.saturation,this.value);
+		Pixel currentColor = new Pixel((int)rgb[0],(int)rgb[1],(int)rgb[2],255);
+
+		if (currentColor.getARGB()== result.getPixel().getARGB()) return;
+
 		red = result.getPixel().getRed();
 		green = result.getPixel().getGreen();
 		blue = result.getPixel().getBlue();
 
-		double[] hsv = convertToHSV(red, green, blue);
-		hueCS.setValue((int)hsv[0]);
-		saturationCS.setValue((int)hsv[1]);
-		valueCS.setValue((int)hsv[2]);
+		int[] hsv = convertToHSV(this.red, this.green, this.blue);
+
+		hueCS.setValue(HueDivision);
+		saturationCS.setValue(SaturationDivision);
+		valueCS.setValue(ValueDivision);
+
+		this.hue=hsv[0];
+		this.saturation=hsv[1];
+		this.value=hsv[2];
+
 		computeHueImage(hsv[0], hsv[1], hsv[2]);
 		computeSaturationImage(hsv[0], hsv[1], hsv[2]);
 		computeValueImage(hsv[0], hsv[1], hsv[2]);
