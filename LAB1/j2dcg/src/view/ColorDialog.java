@@ -122,8 +122,22 @@ public class ColorDialog extends JDialog {
 	}
 	
 	private JPanel createCMYKPanel(ColorDialogResult result, int imageWidths) {	
+
+		HSVMediator = new HSVColorMediator(result, imageWidths, 30);
 		JPanel panel = new JPanel();
-		
+		ColorSlider CyanCS = new ColorSlider("C:",HSVMediator.getHueDivision(), HSVMediator.getCyanImage());
+		ColorSlider MagentaCS = new ColorSlider("M:",HSVMediator.getSaturationDivision(), HSVMediator.getMagentaImage());
+		ColorSlider YellowCS = new ColorSlider("Y:",HSVMediator.getValueDivision(), HSVMediator.getYellowImage());
+		ColorSlider BlackCS = new ColorSlider("B:",HSVMediator.getValueDivision(), HSVMediator.getBlackImage());
+		HSVMediator.setHueCS(HueCS);
+		HSVMediator.setSaturationCS(SaturationCS);
+		HSVMediator.setValueCS(ValueCS);
+
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.add(HueCS);
+		panel.add(SaturationCS);
+		panel.add(ValueCS);
+
 		return panel;
 	}
 	
