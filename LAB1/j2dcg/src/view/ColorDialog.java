@@ -39,6 +39,7 @@ import model.Pixel;
  */
 public class ColorDialog extends JDialog {
 	private JButton okButton;
+	private CMYKMediator cmykMediator;
 	private RGBColorMediator rgbMediator;
 	private HSVColorMediator HSVMediator;
 	private ActionListener okActionListener;
@@ -123,21 +124,24 @@ public class ColorDialog extends JDialog {
 	
 	private JPanel createCMYKPanel(ColorDialogResult result, int imageWidths) {	
 
-		HSVMediator = new HSVColorMediator(result, imageWidths, 30);
+		cmykMediator = new CMYKMediator(result, imageWidths, 30);
 		JPanel panel = new JPanel();
-		ColorSlider CyanCS = new ColorSlider("C:",HSVMediator.getHueDivision(), HSVMediator.getCyanImage());
-		ColorSlider MagentaCS = new ColorSlider("M:",HSVMediator.getSaturationDivision(), HSVMediator.getMagentaImage());
-		ColorSlider YellowCS = new ColorSlider("Y:",HSVMediator.getValueDivision(), HSVMediator.getYellowImage());
-		ColorSlider BlackCS = new ColorSlider("B:",HSVMediator.getValueDivision(), HSVMediator.getBlackImage());
-		HSVMediator.setHueCS(HueCS);
-		HSVMediator.setSaturationCS(SaturationCS);
-		HSVMediator.setValueCS(ValueCS);
+		ColorSlider CyanCS = new ColorSlider("C:",cmykMediator.getCyan(), cmykMediator.getCyanImage());
+		ColorSlider MagentaCS = new ColorSlider("M:",cmykMediator.getMagenta(), cmykMediator.getMagentaImage());
+		ColorSlider YellowCS = new ColorSlider("Y:",cmykMediator.getYellow(), cmykMediator.getYellowImage());
+		ColorSlider BlackCS = new ColorSlider("B:",cmykMediator.getBlack(), cmykMediator.getBlackImage());
+
+		cmykMediator.setCyanCS(CyanCS);
+		cmykMediator.setMagentaCS(MagentaCS);
+		cmykMediator.setYellowCS(YellowCS);
+		cmykMediator.setBlackCS(BlackCS);
+
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.add(HueCS);
-		panel.add(SaturationCS);
-		panel.add(ValueCS);
-
+		panel.add(CyanCS);
+		panel.add(MagentaCS);
+		panel.add(YellowCS);
+		panel.add(BlackCS);
 		return panel;
 	}
 	
