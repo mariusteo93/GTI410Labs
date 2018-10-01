@@ -12,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file leaf-file-name="HSVColorMediator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HSVColorMediator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/HSVColorMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2275">
-              <caret line="112" column="26" lean-forward="false" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
+            <state relative-caret-position="779">
+              <caret line="184" column="47" lean-forward="true" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
               <folding>
                 <element signature="e#1612#1613#0" expanded="true" />
                 <element signature="e#1637#1638#0" expanded="true" />
@@ -24,14 +24,14 @@
                 <element signature="e#1706#1707#0" expanded="true" />
                 <element signature="e#1738#1739#0" expanded="true" />
                 <element signature="e#1765#1766#0" expanded="true" />
-                <element signature="e#10800#10801#0" expanded="true" />
-                <element signature="e#10822#10823#0" expanded="true" />
-                <element signature="e#10867#10868#0" expanded="true" />
-                <element signature="e#10896#10897#0" expanded="true" />
-                <element signature="e#10936#10937#0" expanded="true" />
-                <element signature="e#10960#10961#0" expanded="true" />
-                <element signature="e#10997#10998#0" expanded="true" />
-                <element signature="e#11016#11017#0" expanded="true" />
+                <element signature="e#8934#8935#0" expanded="true" />
+                <element signature="e#8956#8957#0" expanded="true" />
+                <element signature="e#9001#9002#0" expanded="true" />
+                <element signature="e#9030#9031#0" expanded="true" />
+                <element signature="e#9070#9071#0" expanded="true" />
+                <element signature="e#9094#9095#0" expanded="true" />
+                <element signature="e#9131#9132#0" expanded="true" />
+                <element signature="e#9150#9151#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="RGBColorMediator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/RGBColorMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="69" />
+            <state relative-caret-position="107">
+              <caret line="96" column="50" lean-forward="true" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -87,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ColorDialog.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ColorDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/ColorDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1392">
-              <caret line="120" column="8" lean-forward="true" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="8" />
+            <state relative-caret-position="195">
+              <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -100,26 +100,26 @@
       <file leaf-file-name="CMYKMediator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/CMYKMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+            <state relative-caret-position="615">
+              <caret line="171" column="9" lean-forward="true" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7870#7871#0" expanded="true" />
-                <element signature="e#7902#7903#0" expanded="true" />
-                <element signature="e#7979#7980#0" expanded="true" />
-                <element signature="e#8014#8015#0" expanded="true" />
-                <element signature="e#8090#8091#0" expanded="true" />
-                <element signature="e#8124#8125#0" expanded="true" />
-                <element signature="e#8167#8168#0" expanded="true" />
-                <element signature="e#8200#8201#0" expanded="true" />
-                <element signature="e#8836#8837#0" expanded="true" />
-                <element signature="e#8863#8864#0" expanded="true" />
-                <element signature="e#8925#8926#0" expanded="true" />
-                <element signature="e#8955#8956#0" expanded="true" />
-                <element signature="e#9016#9017#0" expanded="true" />
-                <element signature="e#9044#9045#0" expanded="true" />
-                <element signature="e#9072#9073#0" expanded="true" />
-                <element signature="e#9099#9100#0" expanded="true" />
+                <element signature="e#8145#8146#0" expanded="true" />
+                <element signature="e#8177#8178#0" expanded="true" />
+                <element signature="e#8254#8255#0" expanded="true" />
+                <element signature="e#8289#8290#0" expanded="true" />
+                <element signature="e#8365#8366#0" expanded="true" />
+                <element signature="e#8399#8400#0" expanded="true" />
+                <element signature="e#8442#8443#0" expanded="true" />
+                <element signature="e#8475#8476#0" expanded="true" />
+                <element signature="e#9111#9112#0" expanded="true" />
+                <element signature="e#9138#9139#0" expanded="true" />
+                <element signature="e#9200#9201#0" expanded="true" />
+                <element signature="e#9230#9231#0" expanded="true" />
+                <element signature="e#9291#9292#0" expanded="true" />
+                <element signature="e#9319#9320#0" expanded="true" />
+                <element signature="e#9347#9348#0" expanded="true" />
+                <element signature="e#9374#9375#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,24 +128,22 @@
       <file leaf-file-name="YCbCrMediator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/YCbCrMediator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="22" column="71" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="71" />
+            <state relative-caret-position="13">
+              <caret line="158" column="26" lean-forward="true" selection-start-line="158" selection-start-column="26" selection-end-line="158" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5649#5650#0" expanded="true" />
-                <element signature="e#5678#5679#0" expanded="true" />
-                <element signature="e#5750#5751#0" expanded="true" />
-                <element signature="e#5780#5781#0" expanded="true" />
-                <element signature="e#5852#5853#0" expanded="true" />
-                <element signature="e#5882#5883#0" expanded="true" />
+                <element signature="e#5790#5791#0" expanded="true" />
+                <element signature="e#5819#5820#0" expanded="true" />
+                <element signature="e#5891#5892#0" expanded="true" />
+                <element signature="e#5921#5922#0" expanded="true" />
+                <element signature="e#5993#5994#0" expanded="true" />
+                <element signature="e#6023#6024#0" expanded="true" />
                 <element signature="e#6519#6520#0" expanded="true" />
-                <element signature="e#6546#6547#0" expanded="true" />
-                <element signature="e#6608#6609#0" expanded="true" />
-                <element signature="e#6638#6639#0" expanded="true" />
-                <element signature="e#6699#6700#0" expanded="true" />
-                <element signature="e#6727#6728#0" expanded="true" />
-                <element signature="e#6755#6756#0" expanded="true" />
-                <element signature="e#6782#6783#0" expanded="true" />
+                <element signature="e#6543#6544#0" expanded="true" />
+                <element signature="e#6600#6601#0" expanded="true" />
+                <element signature="e#6625#6626#0" expanded="true" />
+                <element signature="e#6682#6683#0" expanded="true" />
+                <element signature="e#6707#6708#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -183,12 +181,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/HSVColorMediator.java" />
         <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/CMYKColorMediator.java" />
-        <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/CMYKMediator.java" />
-        <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/ColorDialog.java" />
         <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/RGBColorMediator.java" />
+        <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/ColorDialog.java" />
+        <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/CMYKMediator.java" />
         <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/YCbCrMediator.java" />
+        <option value="$PROJECT_DIR$/LAB1/j2dcg/src/view/HSVColorMediator.java" />
       </list>
     </option>
   </component>
@@ -219,8 +217,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,6 +252,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
@@ -403,11 +401,12 @@
       <workItem from="1538172902189" duration="5759000" />
       <workItem from="1538179250258" duration="1037000" />
       <workItem from="1538331165790" duration="18543000" />
+      <workItem from="1538411930873" duration="8826000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66086000" />
+    <option name="totallyTimeSpent" value="74912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -425,7 +424,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15286145" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11370482" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -511,22 +510,22 @@
           <caret line="111" column="43" lean-forward="true" selection-start-line="111" selection-start-column="43" selection-end-line="111" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7870#7871#0" expanded="true" />
-            <element signature="e#7902#7903#0" expanded="true" />
-            <element signature="e#7979#7980#0" expanded="true" />
-            <element signature="e#8014#8015#0" expanded="true" />
-            <element signature="e#8090#8091#0" expanded="true" />
-            <element signature="e#8124#8125#0" expanded="true" />
-            <element signature="e#8167#8168#0" expanded="true" />
-            <element signature="e#8200#8201#0" expanded="true" />
-            <element signature="e#8836#8837#0" expanded="true" />
-            <element signature="e#8863#8864#0" expanded="true" />
-            <element signature="e#8925#8926#0" expanded="true" />
-            <element signature="e#8955#8956#0" expanded="true" />
-            <element signature="e#9016#9017#0" expanded="true" />
-            <element signature="e#9044#9045#0" expanded="true" />
-            <element signature="e#9072#9073#0" expanded="true" />
-            <element signature="e#9099#9100#0" expanded="true" />
+            <element signature="e#8145#8146#0" expanded="true" />
+            <element signature="e#8177#8178#0" expanded="true" />
+            <element signature="e#8254#8255#0" expanded="true" />
+            <element signature="e#8289#8290#0" expanded="true" />
+            <element signature="e#8365#8366#0" expanded="true" />
+            <element signature="e#8399#8400#0" expanded="true" />
+            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8475#8476#0" expanded="true" />
+            <element signature="e#9111#9112#0" expanded="true" />
+            <element signature="e#9138#9139#0" expanded="true" />
+            <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#9230#9231#0" expanded="true" />
+            <element signature="e#9291#9292#0" expanded="true" />
+            <element signature="e#9319#9320#0" expanded="true" />
+            <element signature="e#9347#9348#0" expanded="true" />
+            <element signature="e#9374#9375#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -542,14 +541,14 @@
             <element signature="e#1706#1707#0" expanded="true" />
             <element signature="e#1738#1739#0" expanded="true" />
             <element signature="e#1765#1766#0" expanded="true" />
-            <element signature="e#10800#10801#0" expanded="true" />
-            <element signature="e#10822#10823#0" expanded="true" />
-            <element signature="e#10867#10868#0" expanded="true" />
-            <element signature="e#10896#10897#0" expanded="true" />
-            <element signature="e#10936#10937#0" expanded="true" />
-            <element signature="e#10960#10961#0" expanded="true" />
-            <element signature="e#10997#10998#0" expanded="true" />
-            <element signature="e#11016#11017#0" expanded="true" />
+            <element signature="e#8934#8935#0" expanded="true" />
+            <element signature="e#8956#8957#0" expanded="true" />
+            <element signature="e#9001#9002#0" expanded="true" />
+            <element signature="e#9030#9031#0" expanded="true" />
+            <element signature="e#9070#9071#0" expanded="true" />
+            <element signature="e#9094#9095#0" expanded="true" />
+            <element signature="e#9131#9132#0" expanded="true" />
+            <element signature="e#9150#9151#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -629,14 +628,14 @@
             <element signature="e#1706#1707#0" expanded="true" />
             <element signature="e#1738#1739#0" expanded="true" />
             <element signature="e#1765#1766#0" expanded="true" />
-            <element signature="e#10800#10801#0" expanded="true" />
-            <element signature="e#10822#10823#0" expanded="true" />
-            <element signature="e#10867#10868#0" expanded="true" />
-            <element signature="e#10896#10897#0" expanded="true" />
-            <element signature="e#10936#10937#0" expanded="true" />
-            <element signature="e#10960#10961#0" expanded="true" />
-            <element signature="e#10997#10998#0" expanded="true" />
-            <element signature="e#11016#11017#0" expanded="true" />
+            <element signature="e#8934#8935#0" expanded="true" />
+            <element signature="e#8956#8957#0" expanded="true" />
+            <element signature="e#9001#9002#0" expanded="true" />
+            <element signature="e#9030#9031#0" expanded="true" />
+            <element signature="e#9070#9071#0" expanded="true" />
+            <element signature="e#9094#9095#0" expanded="true" />
+            <element signature="e#9131#9132#0" expanded="true" />
+            <element signature="e#9150#9151#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -716,14 +715,14 @@
             <element signature="e#1706#1707#0" expanded="true" />
             <element signature="e#1738#1739#0" expanded="true" />
             <element signature="e#1765#1766#0" expanded="true" />
-            <element signature="e#10800#10801#0" expanded="true" />
-            <element signature="e#10822#10823#0" expanded="true" />
-            <element signature="e#10867#10868#0" expanded="true" />
-            <element signature="e#10896#10897#0" expanded="true" />
-            <element signature="e#10936#10937#0" expanded="true" />
-            <element signature="e#10960#10961#0" expanded="true" />
-            <element signature="e#10997#10998#0" expanded="true" />
-            <element signature="e#11016#11017#0" expanded="true" />
+            <element signature="e#8934#8935#0" expanded="true" />
+            <element signature="e#8956#8957#0" expanded="true" />
+            <element signature="e#9001#9002#0" expanded="true" />
+            <element signature="e#9030#9031#0" expanded="true" />
+            <element signature="e#9070#9071#0" expanded="true" />
+            <element signature="e#9094#9095#0" expanded="true" />
+            <element signature="e#9131#9132#0" expanded="true" />
+            <element signature="e#9150#9151#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -803,14 +802,14 @@
             <element signature="e#1706#1707#0" expanded="true" />
             <element signature="e#1738#1739#0" expanded="true" />
             <element signature="e#1765#1766#0" expanded="true" />
-            <element signature="e#10800#10801#0" expanded="true" />
-            <element signature="e#10822#10823#0" expanded="true" />
-            <element signature="e#10867#10868#0" expanded="true" />
-            <element signature="e#10896#10897#0" expanded="true" />
-            <element signature="e#10936#10937#0" expanded="true" />
-            <element signature="e#10960#10961#0" expanded="true" />
-            <element signature="e#10997#10998#0" expanded="true" />
-            <element signature="e#11016#11017#0" expanded="true" />
+            <element signature="e#8934#8935#0" expanded="true" />
+            <element signature="e#8956#8957#0" expanded="true" />
+            <element signature="e#9001#9002#0" expanded="true" />
+            <element signature="e#9030#9031#0" expanded="true" />
+            <element signature="e#9070#9071#0" expanded="true" />
+            <element signature="e#9094#9095#0" expanded="true" />
+            <element signature="e#9131#9132#0" expanded="true" />
+            <element signature="e#9150#9151#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -919,6 +918,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/ColorDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/RGBColorMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="96" column="50" lean-forward="true" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/ColorSlider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -927,10 +942,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/YCbCrMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="158" column="26" lean-forward="true" selection-start-line="158" selection-start-column="26" selection-end-line="158" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5790#5791#0" expanded="true" />
+            <element signature="e#5819#5820#0" expanded="true" />
+            <element signature="e#5891#5892#0" expanded="true" />
+            <element signature="e#5921#5922#0" expanded="true" />
+            <element signature="e#5993#5994#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
+            <element signature="e#6519#6520#0" expanded="true" />
+            <element signature="e#6543#6544#0" expanded="true" />
+            <element signature="e#6600#6601#0" expanded="true" />
+            <element signature="e#6625#6626#0" expanded="true" />
+            <element signature="e#6682#6683#0" expanded="true" />
+            <element signature="e#6707#6708#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/CMYKMediator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="171" column="9" lean-forward="true" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8145#8146#0" expanded="true" />
+            <element signature="e#8177#8178#0" expanded="true" />
+            <element signature="e#8254#8255#0" expanded="true" />
+            <element signature="e#8289#8290#0" expanded="true" />
+            <element signature="e#8365#8366#0" expanded="true" />
+            <element signature="e#8399#8400#0" expanded="true" />
+            <element signature="e#8442#8443#0" expanded="true" />
+            <element signature="e#8475#8476#0" expanded="true" />
+            <element signature="e#9111#9112#0" expanded="true" />
+            <element signature="e#9138#9139#0" expanded="true" />
+            <element signature="e#9200#9201#0" expanded="true" />
+            <element signature="e#9230#9231#0" expanded="true" />
+            <element signature="e#9291#9292#0" expanded="true" />
+            <element signature="e#9319#9320#0" expanded="true" />
+            <element signature="e#9347#9348#0" expanded="true" />
+            <element signature="e#9374#9375#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/HSVColorMediator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2275">
-          <caret line="112" column="26" lean-forward="false" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
+        <state relative-caret-position="779">
+          <caret line="184" column="47" lean-forward="true" selection-start-line="184" selection-start-column="47" selection-end-line="184" selection-end-column="47" />
           <folding>
             <element signature="e#1612#1613#0" expanded="true" />
             <element signature="e#1637#1638#0" expanded="true" />
@@ -938,81 +1001,15 @@
             <element signature="e#1706#1707#0" expanded="true" />
             <element signature="e#1738#1739#0" expanded="true" />
             <element signature="e#1765#1766#0" expanded="true" />
-            <element signature="e#10800#10801#0" expanded="true" />
-            <element signature="e#10822#10823#0" expanded="true" />
-            <element signature="e#10867#10868#0" expanded="true" />
-            <element signature="e#10896#10897#0" expanded="true" />
-            <element signature="e#10936#10937#0" expanded="true" />
-            <element signature="e#10960#10961#0" expanded="true" />
-            <element signature="e#10997#10998#0" expanded="true" />
-            <element signature="e#11016#11017#0" expanded="true" />
+            <element signature="e#8934#8935#0" expanded="true" />
+            <element signature="e#8956#8957#0" expanded="true" />
+            <element signature="e#9001#9002#0" expanded="true" />
+            <element signature="e#9030#9031#0" expanded="true" />
+            <element signature="e#9070#9071#0" expanded="true" />
+            <element signature="e#9094#9095#0" expanded="true" />
+            <element signature="e#9131#9132#0" expanded="true" />
+            <element signature="e#9150#9151#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/RGBColorMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/CMYKMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7870#7871#0" expanded="true" />
-            <element signature="e#7902#7903#0" expanded="true" />
-            <element signature="e#7979#7980#0" expanded="true" />
-            <element signature="e#8014#8015#0" expanded="true" />
-            <element signature="e#8090#8091#0" expanded="true" />
-            <element signature="e#8124#8125#0" expanded="true" />
-            <element signature="e#8167#8168#0" expanded="true" />
-            <element signature="e#8200#8201#0" expanded="true" />
-            <element signature="e#8836#8837#0" expanded="true" />
-            <element signature="e#8863#8864#0" expanded="true" />
-            <element signature="e#8925#8926#0" expanded="true" />
-            <element signature="e#8955#8956#0" expanded="true" />
-            <element signature="e#9016#9017#0" expanded="true" />
-            <element signature="e#9044#9045#0" expanded="true" />
-            <element signature="e#9072#9073#0" expanded="true" />
-            <element signature="e#9099#9100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/YCbCrMediator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="22" column="71" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5649#5650#0" expanded="true" />
-            <element signature="e#5678#5679#0" expanded="true" />
-            <element signature="e#5750#5751#0" expanded="true" />
-            <element signature="e#5780#5781#0" expanded="true" />
-            <element signature="e#5852#5853#0" expanded="true" />
-            <element signature="e#5882#5883#0" expanded="true" />
-            <element signature="e#6519#6520#0" expanded="true" />
-            <element signature="e#6546#6547#0" expanded="true" />
-            <element signature="e#6608#6609#0" expanded="true" />
-            <element signature="e#6638#6639#0" expanded="true" />
-            <element signature="e#6699#6700#0" expanded="true" />
-            <element signature="e#6727#6728#0" expanded="true" />
-            <element signature="e#6755#6756#0" expanded="true" />
-            <element signature="e#6782#6783#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LAB1/j2dcg/src/view/ColorDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1392">
-          <caret line="120" column="8" lean-forward="true" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>

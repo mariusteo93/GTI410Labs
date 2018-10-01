@@ -47,8 +47,7 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         this.red = result.getPixel().getRed();
         this.green = result.getPixel().getGreen();
         this.blue = result.getPixel().getBlue();
-        this.result = result;
-        result.addObserver(this);
+
 
         int [] CMYKArray = convertToCYMK(red,green,blue);
 
@@ -56,7 +55,8 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         magenta = CMYKArray[1];
         jaune = CMYKArray[2];
         noir = CMYKArray[3];
-
+        this.result = result;
+        result.addObserver(this);
 
         CyanImage = new BufferedImage(imagesWidth, imagesHeight, BufferedImage.TYPE_INT_ARGB);
         MagentaImage = new BufferedImage(imagesWidth, imagesHeight, BufferedImage.TYPE_INT_ARGB);
@@ -77,6 +77,7 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         boolean updateMagenta = false;
         boolean updateYellow = false;
         boolean updateBlack = false;
+        int [] rgbTableau= convertToRGB(cyan,magenta,jaune,noir);
 
         if (s == cyanCS && v != cyan) {
             cyan = v;
@@ -95,7 +96,7 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
             updateCyan = true;
             updateMagenta = true;
             updateYellow = true;
-            updateBlack = true;
+
         }
         if (s == yellowCS && v != jaune) {
             jaune = v;
@@ -116,7 +117,7 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
             computeBlackImage(cyan,magenta,jaune,noir);
         }
 
-        Pixel pixel = new Pixel(red, green, blue, 255);
+        Pixel pixel = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau[2], 255);
         result.setPixel(pixel);
     }
 
@@ -159,7 +160,8 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         Pixel p = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau[2], 255);
 
         for (int i = 0; i<imagesWidth; ++i) {
-            p.setRed((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
+            //p.setRed((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
+            p.setRed((int)(((double)i / (double)imagesWidth)*255.0));
             int rgb = p.getARGB();
             for (int j = 0; j<imagesHeight; ++j) {
                 CyanImage.setRGB(i, j, rgb);
@@ -174,7 +176,8 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         int [] rgbTableau = convertToRGB(cyan,magenta,jaune,noir);
         Pixel p = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau[2], 255);
         for (int i = 0; i<imagesWidth; ++i) {
-            p.setGreen((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
+            //p.setGreen((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
+            p.setGreen((int)(((double)i / (double)imagesWidth)*255.0));
             int rgb = p.getARGB();
             for (int j = 0; j<imagesHeight; ++j) {
                 MagentaImage.setRGB(i, j, rgb);
@@ -189,7 +192,9 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         int [] rgbTableau = convertToRGB(cyan,magenta,jaune,noir);
         Pixel p = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau[2], 255);
         for (int i = 0; i<imagesWidth; ++i) {
-            p.setBlue((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
+
+            //p.setBlue((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
+            p.setBlue((int)(((double)i / (double)imagesWidth)*255.0));
             int rgb = p.getARGB();
             for (int j = 0; j<imagesHeight; ++j) {
                 YellowImage.setRGB(i, j, rgb);
@@ -204,8 +209,9 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         int [] rgbTableau = convertToRGB(cyan,magenta,jaune,noir);
         Pixel p = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau[2], 255);
         for (int i = 0; i<imagesWidth; ++i) {
-            int noirAjustement = (int)Math.round((((double)i / (double)imagesWidth)* 255.0));
-            int [] rgbIteration = convertToRGB(cyan,magenta,jaune,noirAjustement);
+            //int noirAjustement = (int)Math.round((((double)i / (double)imagesWidth)* 255.0));
+            int [] rgbIteration = convertToRGB(cyan,magenta,jaune,noir);
+
             p.setRed(rgbIteration[0]);
             p.setGreen(rgbIteration[1]);
             p.setBlue(rgbIteration[2]);

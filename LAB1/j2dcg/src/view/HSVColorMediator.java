@@ -118,70 +118,7 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 		Pixel pixel = new Pixel((int) rgb [0], (int) rgb [1], (int) rgb [2],255);
 		result.setPixel(pixel);
 	}
-/*
-	public void computeHueImage(int red, int green, int blue){
-		Pixel p = new Pixel(red, green, blue, 255); 
-		
-		for (int i = 0; i<imagesWidth/6; ++i) {
-			//p.setRed((int)(((double)i/((double)imagesWidth/6)*255.0)));
-			p.setRed(255);
-			p.setGreen((int)(((double)i/((double)imagesWidth/6)*255.0)));
-			int rgb = p.getARGB();
-			for (int j = 0; j < imagesHeight; ++j) {
-				HueImage.setRGB(i, j, rgb);
-			}
-		}
-		for (int i = imagesWidth/6 ; i<imagesWidth/3; ++i) {
-			int increment = 50 - i;
-			p.setGreen(255);
-			p.setRed((int)((255 / ((double) imagesWidth/6) * increment)));
-			int rgb = p.getARGB();
-			for (int j = 0; j<imagesHeight; ++j) {
-				HueImage.setRGB(i, j, rgb);
-			}
-		}
-		for (int i = imagesWidth/3 ; i<imagesWidth/2 ; ++i) {
-			int increment = i - 50;
-			p.setGreen(255);
-			p.setBlue((int)(((double)increment/((double)imagesWidth/6)*255.0)));
-			int rgb = p.getARGB();
-			for (int j = 0; j<imagesHeight; ++j) {
-				HueImage.setRGB(i, j, rgb);
-			}
-		}
-		for (int i =  imagesWidth / 2; i < imagesWidth/6 *4; ++i) {
-			int increment = 100 - i;
-			p.setBlue(255);
-			p.setGreen((int) ((255 / ((double) imagesWidth / 6) * increment)));
-			int rgb = p.getARGB();
-			for (int j = 0; j < imagesHeight; ++j) {
-				HueImage.setRGB(i, j, rgb);
-			}
-		}
-		for (int i =imagesWidth/6 *4 ; i<imagesWidth/6 *5; ++i) {
-			int increment = i - 100;
-			p.setBlue(255);
-			p.setRed((int) (((double) increment / ((double) imagesWidth / 6) * 255.0)));
-			int rgb = p.getARGB();
-			for (int j = 0; j < imagesHeight; ++j) {
-				HueImage.setRGB(i, j, rgb);
-			}
-		}
 
-		for (int i =  imagesWidth /6 *5; i<imagesWidth; ++i) {
-			int increment = 150 - i;
-			p.setRed(255);
-			p.setBlue((int) ((255 / ((double) imagesWidth / 6) * increment)));
-			int rgb = p.getARGB();
-			for (int j = 0; j < imagesHeight; ++j) {
-				HueImage.setRGB(i, j, rgb);
-			}
-		}
-		
-		
-		
-	}
-	*/
 public void computeHueImage(int hue, int saturation , int value) {
 
 	double[] rgb = convertToRGB(hue, saturation, value);
@@ -220,7 +157,7 @@ public void computeHueImage(int hue, int saturation , int value) {
 		Pixel p = new Pixel((int) rgb[0], (int) rgb[1], (int) rgb[2], 255);
 		int temp;
 		for (int i = 0; i<imagesWidth; ++i) {
-			temp = (int) Math.round(((double) i  / (double)imagesWidth) * 100);
+			temp = (int) Math.round(((double) i  / (double)imagesWidth) *100);
 
 			//hue = (int)(((double)i / (double)imagesWidth) * 255.0);
 
@@ -246,7 +183,7 @@ public void computeHueImage(int hue, int saturation , int value) {
 		Pixel p = new Pixel((int) rgb[0], (int) rgb[1], (int) rgb[2], 255);
 		int temp;
 		for (int i = 0; i < imagesWidth; ++i) {
-			temp = (int) Math.round(((double) i / (double) imagesWidth) * 100);
+			temp = (int) Math.round(((double) i / (double) imagesWidth) *100);
 
 			//hue = (int)(((double)i / (double)imagesWidth) * 255.0);
 

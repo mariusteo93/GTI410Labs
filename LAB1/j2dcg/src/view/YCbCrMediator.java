@@ -55,6 +55,8 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
         Cb= YCbCr[1];
         Cr = YCbCr[2];
 
+        this.result = result;
+        result.addObserver(this);
 
         YImage = new BufferedImage(imagesWidth, imagesHeight, BufferedImage.TYPE_INT_ARGB);
         CbImage = new BufferedImage(imagesWidth, imagesHeight, BufferedImage.TYPE_INT_ARGB);
@@ -74,7 +76,7 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
         boolean updateY= false;
         boolean updateCb = false;
         boolean updateCr= false;
-
+        int [] rgbTableau= convertToRGB(Y,Cb,Cr);
 
         if (s == YCS && v != Y) {
             Y = v;
@@ -105,7 +107,7 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
         }
 
 
-        Pixel pixel = new Pixel(red, green, blue, 255);
+        Pixel pixel = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau [2], 255);
         result.setPixel(pixel);
     }
 
@@ -215,53 +217,48 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
     /**
      * @param slider
      */
-    public void setCyanCS(ColorSlider slider) {
-        cyanCS = slider;
+    public void setYCS(ColorSlider slider) {
+        YCS = slider;
         slider.addObserver(this);
     }
-    public void setMagentaCS(ColorSlider slider) {
-        magentaCS = slider;
-        slider.addObserver(this);
-    }
-
-    /**
-     * @param slider
-     */
-    public void setYellowCS(ColorSlider slider) {
-        yellowCS = slider;
+    public void setCbCS(ColorSlider slider) {
+        CbCS = slider;
         slider.addObserver(this);
     }
 
     /**
      * @param slider
      */
-    public void setBlackCS(ColorSlider slider) {
-        blackCS = slider;
+    public void setCrCS(ColorSlider slider) {
+        CrCS = slider;
         slider.addObserver(this);
     }
+
+    /**
+     * @param slider
+     */
+
     /**
      * @return
      */
-    public int getCyan() {
-        return cyan;
+    public int getY() {
+        return Y;
     }
 
     /**
      * @return
      */
-    public int getMagenta() {
-        return magenta;
+    public int getCb() {
+        return Cb;
     }
 
     /**
      * @return
      */
-    public int getYellow() {
-        return jaune;
+    public int getCr() {
+        return Cr;
     }
-    public int getBlack() {
-        return noir;
-    }
+
 
 
     /* (non-Javadoc)
@@ -270,7 +267,7 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
     public void update() {
         // When updated with the new "result" color, if the "currentColor"
         // is aready properly set, there is no need to recompute the images.
-        int[] rgbtableau = convertToRGB(cyan,magenta,jaune,noir);
+        int[] rgbtableau = convertToRGB(Y,Cb,Cr);
         Pixel currentColor = new Pixel(rgbtableau[0],rgbtableau[1],rgbtableau[2],255);
         if(currentColor.getARGB() == result.getPixel().getARGB()) return;
 
@@ -278,17 +275,16 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
         green = result.getPixel().getGreen();
         blue = result.getPixel().getBlue();
 
-        int  [] CMYK = convertToCYMK(red,green,blue);
+        int  [] YCbCr = convertToYCbCr(red,green,blue);
 
-        cyanCS.setValue(CMYK[0]);
-        magentaCS.setValue(CMYK[1]);
-        yellowCS.setValue(CMYK[2]);
-        blackCS.setValue(CMYK[3]);
+        YCS.setValue(YCbCr[0]);
+        CbCS.setValue(YCbCr[1]);
+        CrCS.setValue(YCbCr[2]);
 
-        computeCyanImage(CMYK[0], CMYK[1],CMYK[2],CMYK[3]);
-        computeMagentaImage(CMYK[0], CMYK[1],CMYK[2],CMYK[3]);
-        computeYellowImage(CMYK[0], CMYK[1],CMYK[2],CMYK[3]);
-        computeBlackImage(CMYK[0], CMYK[1],CMYK[2],CMYK[3]);
+        computeYImage(YCbCr[0], YCbCr[1],YCbCr[2]);
+        computeCbImage(YCbCr[0], YCbCr[1],YCbCr[2]);
+        computeCrImage(YCbCr[0], YCbCr[1],YCbCr[2]);
+
 
         // Efficiency issue: When the color is adjusted on a tab in the
         // user interface, the sliders color of the other tabs are recomputed,
