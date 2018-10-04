@@ -192,9 +192,12 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         int [] rgbTableau = convertToRGB(cyan,magenta,jaune,noir);
         Pixel p = new Pixel(rgbTableau[0], rgbTableau[1], rgbTableau[2], 255);
         for (int i = 0; i<imagesWidth; ++i) {
-
+           // rgbTableau = convertToRGB(cyan,magenta,(int)(((double)i / (double)imagesWidth)*255.0),noir);
             //p.setBlue((int)(255 - noir - ((double) i / (double) imagesWidth * (255 - noir))));
-            p.setBlue((int)(((double)i / (double)imagesWidth)*255.0));
+           // p.setRed(rgbTableau[0]);
+           // p.setGreen(rgbTableau[1]);
+            p.setBlue(((int)(((double)i / (double)imagesWidth)*255.0)));
+           // p.setBlue((int)(((double)i / (double)imagesWidth)*255.0));
             int rgb = p.getARGB();
             for (int j = 0; j<imagesHeight; ++j) {
                 YellowImage.setRGB(i, j, rgb);
@@ -319,9 +322,9 @@ class CMYKMediator extends Object implements SliderObserver, ObserverIF {
         int  [] CMYK = convertToCYMK(red,green,blue);
 
         cyanCS.setValue(CMYK[0]);
-        magentaCS.setValue(CMYK[1]);
-        yellowCS.setValue(CMYK[2]);
-        blackCS.setValue(CMYK[3]);
+       magentaCS.setValue(CMYK[1]);
+       yellowCS.setValue(CMYK[2]);
+       blackCS.setValue(CMYK[3]);
 
         computeCyanImage(CMYK[0], CMYK[1],CMYK[2],CMYK[3]);
         computeMagentaImage(CMYK[0], CMYK[1],CMYK[2],CMYK[3]);

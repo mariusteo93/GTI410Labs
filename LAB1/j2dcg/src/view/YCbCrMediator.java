@@ -279,7 +279,7 @@ class YCbCrMediator extends Object implements SliderObserver, ObserverIF {
 
         YCS.setValue(YCbCr[0]);
         CbCS.setValue(YCbCr[1]);
-        CrCS.setValue(YCbCr[2]);
+       CrCS.setValue(YCbCr[2]);
 
         computeYImage(YCbCr[0], YCbCr[1],YCbCr[2]);
         computeCbImage(YCbCr[0], YCbCr[1],YCbCr[2]);

@@ -84,7 +84,7 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 
 		}
 		if (s == saturationCS) {
-			saturationCalculation=(int) Math.round((double)v * (100 / 255));
+			saturationCalculation=(int) Math.round((double)v * (100.0 / 255.0));
 			if (this.saturation !=saturationCalculation){
 
 				this.saturation=saturationCalculation;
@@ -94,7 +94,7 @@ public class HSVColorMediator extends Object implements SliderObserver, Observer
 
 		}
 		if (s == valueCS) {
-			valueCalculation=(int) Math.round((double)v * (100 / 255));
+			valueCalculation=(int) Math.round((double)v * (100.0 / 255.0));
 			if (this.value !=valueCalculation){
 
 				this.value=valueCalculation;
@@ -265,8 +265,12 @@ public void computeHueImage(int hue, int saturation , int value) {
 			rgb[2]= X;
 		}
 
+		int valeurRGB = (int) Math.round((rgb[0]+ m) *255);
+		if ( valeurRGB <0){
+			valeurRGB+=360;
+		}
+		rgb[0]= valeurRGB;
 
-		rgb[0]= (int) Math.round((rgb[0]+ m) *255);
 		rgb[1]= (int) Math.round((rgb[1]+ m) *255);
 		rgb[2]= (int) Math.round((rgb[2]+ m) *255);
 
