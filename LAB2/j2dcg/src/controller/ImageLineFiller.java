@@ -72,7 +72,7 @@ public class ImageLineFiller extends AbstractTransformer {
 				if (0 <= ptTransformed.x && ptTransformed.x < currentImage.getImageWidth() &&
 				    0 <= ptTransformed.y && ptTransformed.y < currentImage.getImageHeight()) {
 					currentImage.beginPixelUpdate();
-					boundaryFill(ptTransformed.x,ptTransformed.y,fillColor.getARGB(),borderColor.getARGB());
+					floodFill(ptTransformed.x,ptTransformed.y,currentImage.getPixel(ptTransformed.x,ptTransformed.y).getARGB(),fillColor);
 					currentImage.endPixelUpdate();											 	
 					return true;
 				}
@@ -112,7 +112,21 @@ public class ImageLineFiller extends AbstractTransformer {
 	/**
 	 * source: https://www.geeksforgeeks.org/boundary-fill-algorithm/
 	 * @return
-	 */private void boundaryFill(int x, int y, int fillColor, int boundaryColor){
+  */
+
+	private void floodFill (int x, int y , int ARGB, Pixel fillColor){
+
+		if  (currentImage.getPixel(x,y).getARGB()!= ARGB){
+			return;
+		}
+		currentImage.setPixel(x,y,fillColor);
+		floodFill(x + 1, y, ARGB, fillColor);
+		floodFill(x - 1, y, ARGB, fillColor);
+		floodFill(x, y + 1, ARGB, fillColor);
+		floodFill(x, y - 1, ARGB, fillColor);
+  }
+
+	 private void boundaryFill(int x, int y, int fillColor, int boundaryColor){
 
 		int currentColor = currentImage.getPixel(x,y).getARGB();
 	 	if( currentColor != boundaryColor && currentColor != fillColor){
