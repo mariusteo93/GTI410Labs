@@ -72,7 +72,13 @@ public class ImageLineFiller extends AbstractTransformer {
 				if (0 <= ptTransformed.x && ptTransformed.x < currentImage.getImageWidth() &&
 				    0 <= ptTransformed.y && ptTransformed.y < currentImage.getImageHeight()) {
 					currentImage.beginPixelUpdate();
-					floodFill(ptTransformed.x,ptTransformed.y,currentImage.getPixel(ptTransformed.x,ptTransformed.y).getARGB(),fillColor);
+
+					if (floodFill) {
+						floodFill(ptTransformed.x, ptTransformed.y, currentImage.getPixel(ptTransformed.x, ptTransformed.y).getARGB(), fillColor);
+					}else{
+						boundaryFill(ptTransformed.x,ptTransformed.y,fillColor.getARGB(),borderColor.getARGB());
+					}
+
 					currentImage.endPixelUpdate();											 	
 					return true;
 				}
