@@ -15,6 +15,7 @@
 
 package controller;
 import model.*;
+import view.HSVColorMediator;
 
 import java.awt.Point;
 import java.awt.event.*;
@@ -134,14 +135,65 @@ public class ImageLineFiller extends AbstractTransformer {
 
 	 private void boundaryFill(int x, int y, int fillColor, int boundaryColor){
 
+		 //le boundary et le fillcoor sont dans le meme threshHold, on fait rien
+		 if(isInHSVthreshold(fillColor,boundaryColor)){
+			System.out.println("Boundary color and fillcolor are in the same HSV threshold, aborting filling");
+		 	return;
+		 }
+
+		 if(x > currentImageWidth-1 || y > currentImage.getImageHeight()-1 || x < 0 || y < 0){
+		 	return;
+		 }
+
 		int currentColor = currentImage.getPixel(x,y).getARGB();
-	 	if( currentColor != boundaryColor && currentColor != fillColor){
+
+	 	if(!isInHSVthreshold(currentColor,boundaryColor) && currentColor != fillColor){
 			currentImage.setPixel(x,y, new Pixel(fillColor));
+			boundaryFill(x - 1, y, fillColor, boundaryColor);
 			boundaryFill(x + 1, y, fillColor, boundaryColor);
 			boundaryFill(x, y + 1, fillColor, boundaryColor);
-			boundaryFill(x - 1, y, fillColor, boundaryColor);
 			boundaryFill(x, y - 1, fillColor, boundaryColor);
 		}
+	}
+
+	private boolean isInHSVthreshold(int currentColor, int boundaryColor){
+
+		boolean inThreshold = false;
+
+		Pixel currentPixel = new Pixel(currentColor);
+		Pixel boundaryPixel = new Pixel(boundaryColor);
+		int currentHSV[] = HSVColorMediator.convertToHSV(currentPixel.getRed(),currentPixel.getGreen(),currentPixel.getBlue());
+		int boundaryHSV[] = HSVColorMediator.convertToHSV(boundaryPixel.getRed(),boundaryPixel.getGreen(),boundaryPixel.getBlue());
+
+		//Thresholds
+		int hueT = hueThreshold;
+		int saturationT = saturationThreshold * 100 / 255;
+		int valueT = valueThreshold * 100 / 255;
+
+		//current color HSV
+		int currentHue = currentHSV[0];
+		int currentSat = currentHSV[1];
+		int currentValue = currentHSV[2];
+
+		//boundary color HSV
+		int boundaryHue = boundaryHSV[0];
+		int boundarySat = boundaryHSV[1];
+		int boundaryValue = boundaryHSV[2];
+
+		/*if(currentValue != 100) {
+			int a = 0;
+		}*/
+
+
+		if(currentHue <= boundaryHue + hueT && currentHue >= boundaryHue - hueT &&
+		currentSat <= boundarySat + saturationT && currentSat >= boundarySat - saturationT &&
+		currentValue <= boundaryValue + valueT && currentValue >= boundaryValue - valueT){
+
+			inThreshold = true;
+
+		}
+
+		return  inThreshold;
 	}
 
 
