@@ -31,6 +31,7 @@ import java.util.Stack;
  * @version $Revision: 1.12 $
  */
 public class ImageLineFiller extends AbstractTransformer {
+	private int stackcount = 0;
 	private ImageX currentImage;
 	private int currentImageWidth;
 	private Pixel fillColor = new Pixel(0xFF00FFFF);
@@ -72,7 +73,7 @@ public class ImageLineFiller extends AbstractTransformer {
 				if (0 <= ptTransformed.x && ptTransformed.x < currentImage.getImageWidth() &&
 				    0 <= ptTransformed.y && ptTransformed.y < currentImage.getImageHeight()) {
 					currentImage.beginPixelUpdate();
-					horizontalLineFill(ptTransformed);
+
 					currentImage.endPixelUpdate();											 	
 					return true;
 				}
@@ -115,10 +116,12 @@ public class ImageLineFiller extends AbstractTransformer {
 
 	 	Pixel p;
 
-	 	if ( )
+
 
 
 	}
+
+
 
 
 	public Pixel getBorderColor() {
