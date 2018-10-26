@@ -205,26 +205,26 @@ public void computeHueImage(int hue, int saturation , int value) {
 
 	}
 	// 353.0 0.0 0.98 to 353 0 98
-	private static double [] convertToRGB(int H, int S, int V){
+	public static double [] convertToRGB(int H, int S, int V){
 		double rgb []= new double [3];
 
 		double Sprime = (double)S / 100;
-		System.out.println("SPrime:"+ Sprime);
+		//System.out.println("SPrime:"+ Sprime);
 
 		double Vprime = (double)  V /100;
 
-		System.out.println("VPrime:"+ Vprime);
+		//System.out.println("VPrime:"+ Vprime);
 
 		double C = Sprime * Vprime;
-		System.out.println("C:"+ C);
+		//System.out.println("C:"+ C);
 
 		double XPrime = (1.0 - Math.abs(((double)H/60) % 2 - 1.0 ) );
 
-		System.out.println("xPrime:"+ XPrime);
+		//System.out.println("xPrime:"+ XPrime);
 
 		double X =   C * XPrime ;
 
-		System.out.println("X:"+ X);
+		//System.out.println("X:"+ X);
 
 		double m = Vprime - C;
 
@@ -279,7 +279,7 @@ public void computeHueImage(int hue, int saturation , int value) {
 
 	}
 
-	private static int [] convertToHSV(int red, int green, int blue){
+	public static int [] convertToHSV(int red, int green, int blue){
 		int [] hsv = new int [3];
 		int M = Math.max(red, Math.max(green, blue));
 		//System.out.println(M);
@@ -295,7 +295,7 @@ public void computeHueImage(int hue, int saturation , int value) {
 		}else if (M == red){
 			double avantMod= (double)(green - blue) / c;
 			hPrime =  avantMod % 6;
-			System.out.println(hPrime);
+			//System.out.println(hPrime);
 		}else if (M == green){
 			hPrime = (double) (blue - red)/ c + 2;
 		}else if ( M == blue){
@@ -303,7 +303,7 @@ public void computeHueImage(int hue, int saturation , int value) {
 		}
 
 		H = hPrime * 60;
-		System.out.println(H);
+		//System.out.println(H);
 		double value =  M ;
 
 		if ( c == 0) {
