@@ -20,19 +20,44 @@ import java.util.List;
 import model.ImageDouble;
 import model.ImageX;
 import model.Shape;
+import view.FilterKernelPanel;
 
 /**
  * 
  * <p>Title: FilteringTransformer</p>
  * <p>Description: ... (AbstractTransformer)</p>
- * <p>Copyright: Copyright (c) 2004 Sébastien Bois, Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Sï¿½bastien Bois, Eric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.6 $
  */
+
+
 public class FilteringTransformer extends AbstractTransformer{
-	Filter filter = new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
-	
+	public static int choixFiltre;
+
+
+
+public Filter FiltreSelection(){
+	Filter filter =  new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+	if(choixFiltre==1){
+	filter = new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+
+	}else if(choixFiltre==2) {
+		filter = new GaussianFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+	}else if(choixFiltre==3) {
+		filter = new Laplacian4Filter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+	}else if(choixFiltre==4) {
+		filter = new Laplacian8Filter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+
+	}else if(choixFiltre==7) {
+		filter = new SobelHorizFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+
+	}else if(choixFiltre==8) {
+		filter = new SobelVerticalFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+	}
+	return filter;
+}
 	/**
 	 * @param _coordinates
 	 * @param _value
@@ -41,6 +66,7 @@ public class FilteringTransformer extends AbstractTransformer{
 		System.out.println("[" + (_coordinates.getColumn() - 1) + "]["
                                    + (_coordinates.getRow() - 1) + "] = " 
                                    + _value);
+
 	}
 		
 	/**
@@ -49,6 +75,7 @@ public class FilteringTransformer extends AbstractTransformer{
 	 * @return
 	 */
 	protected boolean mouseClicked(MouseEvent e){
+		Filter filter = FiltreSelection();
 		List intersectedObjects = Selector.getDocumentObjectsAtLocation(e.getPoint());
 		if (!intersectedObjects.isEmpty()) {			
 			Shape shape = (Shape)intersectedObjects.get(0);			

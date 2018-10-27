@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import controller.FilteringTransformer;
 import model.KernelModel;
 import model.ObserverIF;
 import controller.TransformersIndex;
@@ -32,8 +33,8 @@ import controller.TransformersIndex;
 /**
  * <p>Title: FilterKernelPanel</p>
  * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2003 Sébastien Bois, Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2003 Sï¿½bastien Bois, Eric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.8 $
  */
@@ -75,7 +76,7 @@ public class FilterKernelPanel extends JPanel implements ObserverIF {
 	 */
 	private TransformersIndex ti;
 	
-	public FilterKernelPanel(TransformersIndex ti){
+	public  FilterKernelPanel(TransformersIndex ti){
 		_setUpPanel  = new JPanel();
 		 
 		 this.ti = ti;
@@ -122,6 +123,8 @@ public class FilterKernelPanel extends JPanel implements ObserverIF {
 			new ActionListener(){
 				public void actionPerformed(ActionEvent ae) {
 					setFilter((String)_filterTypeComboBox.getSelectedItem());
+					FilteringTransformer.choixFiltre = _filterTypeComboBox.getSelectedIndex();
+					System.out.println(_filterTypeComboBox.getSelectedIndex());
 				}	
 			});
 		
@@ -247,5 +250,10 @@ public class FilterKernelPanel extends JPanel implements ObserverIF {
 		}
 		// The following is needed because as we were updated, we automatically switched to Custom.
 		_filterTypeComboBox.setSelectedIndex(index);
+
+	}
+
+	public JLabel get_filterTypeLabel() {
+		return _filterTypeLabel;
 	}
 }

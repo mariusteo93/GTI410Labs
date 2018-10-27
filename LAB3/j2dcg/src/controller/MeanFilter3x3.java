@@ -19,8 +19,8 @@ import model.*;
 /**
  * <p>Title: MeanFilter3x3</p>
  * <p>Description: A mean filter implementation.</p>
- * <p>Copyright: Copyright (c) 2004 Colin Barré-Brisebois, Éric Paquette</p>
- * <p>Company: ETS - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Colin Barrï¿½-Brisebois, ï¿½ric Paquette</p>
+ * <p>Company: ETS - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.11 $
  */
@@ -56,7 +56,7 @@ public class MeanFilter3x3 extends Filter {
 		return filter(image);
 	}
 	
-	/**
+	/**n
 	 * Filters an ImageX and returns an ImageX.
 	 */	
 	public ImageX filterToImageX(ImageX image) {
