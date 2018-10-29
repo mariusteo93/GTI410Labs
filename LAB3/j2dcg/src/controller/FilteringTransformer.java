@@ -25,14 +25,14 @@ import model.Shape;
  * 
  * <p>Title: FilteringTransformer</p>
  * <p>Description: ... (AbstractTransformer)</p>
- * <p>Copyright: Copyright (c) 2004 Sébastien Bois, Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Sï¿½bastien Bois, Eric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.6 $
  */
 public class FilteringTransformer extends AbstractTransformer{
 	Filter filter = new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
-	
+
 	/**
 	 * @param _coordinates
 	 * @param _value
@@ -51,7 +51,7 @@ public class FilteringTransformer extends AbstractTransformer{
 	protected boolean mouseClicked(MouseEvent e){
 		List intersectedObjects = Selector.getDocumentObjectsAtLocation(e.getPoint());
 		if (!intersectedObjects.isEmpty()) {			
-			Shape shape = (Shape)intersectedObjects.get(0);			
+			Shape shape = (Shape)intersectedObjects.get(0);
 			if (shape instanceof ImageX) {				
 				ImageX currentImage = (ImageX)shape;
 				ImageDouble filteredImage = filter.filterToImageDouble(currentImage);
@@ -78,7 +78,15 @@ public class FilteringTransformer extends AbstractTransformer{
 	 * @param string
 	 */
 	public void setBorder(String string) {
-		System.out.println(string);
+
+		switch (string){
+			case "Circular":
+				filter.setPaddingStrategy(new PaddingCircularStrategy());
+				break;
+		}
+
+
+
 	}
 
 	/**
