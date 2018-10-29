@@ -35,13 +35,13 @@ import view.FilterKernelPanel;
 
 public class FilteringTransformer extends AbstractTransformer{
 	public static int choixFiltre;
-
+	Filter filter =  new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
 
 
 public Filter FiltreSelection(){
-	Filter filter =  new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+
 	if(choixFiltre==1){
-	filter = new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+	filter = new MeanFilter3x3(new PaddingZeroStrategy(), new ImageNormalizeStrategy());
 
 	}else if(choixFiltre==2) {
 		filter = new GaussianFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
@@ -55,6 +55,8 @@ public Filter FiltreSelection(){
 
 	}else if(choixFiltre==8) {
 		filter = new SobelVerticalFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+	}else if(choixFiltre==0){
+		filter = new CustomFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
 	}
 	return filter;
 }
@@ -66,6 +68,11 @@ public Filter FiltreSelection(){
 		System.out.println("[" + (_coordinates.getColumn() - 1) + "]["
                                    + (_coordinates.getRow() - 1) + "] = " 
                                    + _value);
+
+		if(choixFiltre==0){
+			System.out.println("Instance de custon");
+			filter.setCoordinates(_coordinates,_value);
+		}
 
 	}
 		
