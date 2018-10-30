@@ -2,3 +2,9 @@ LAB2/j2dcg/.idea/
 *.class
 out/
 out/*
+*.xml
+*.iml
+LAB2/.idea/
+LAB2/.idea/*
+**.iml
+LAB3/.idea/misc.xml

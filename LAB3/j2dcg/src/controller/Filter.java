@@ -65,5 +65,10 @@ public class Filter {
 	public ImageConversionStrategy getImageConversionStrategy() {
 		return conversionStrategy;
 	}
-	
+
+	protected void setCoordinates(Coordinates _coordinates, float _value){
+
+
+
+	}
 }

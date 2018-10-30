@@ -20,6 +20,7 @@ import java.util.List;
 import model.ImageDouble;
 import model.ImageX;
 import model.Shape;
+import view.FilterKernelPanel;
 
 /**
  * 
@@ -30,8 +31,33 @@ import model.Shape;
  * @author unascribed
  * @version $Revision: 1.6 $
  */
-public class FilteringTransformer extends AbstractTransformer{
+
+
+public class FilteringTransformer extends AbstractTransformer {
+	public static int choixFiltre;
+	public static int choixBordure;
+	public static int choixClamping;
 	Filter filter = new MeanFilter3x3(new PaddingZeroStrategy(), new ImageClampStrategy());
+
+	public Filter FiltreSelection() {
+
+		if (choixFiltre == 1) {
+			filter = new MeanFilter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		} else if (choixFiltre == 2) {
+			filter = new GaussianFilter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		} else if (choixFiltre == 3) {
+			filter = new Laplacian4Filter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		} else if (choixFiltre == 4) {
+			filter = new Laplacian8Filter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		} else if (choixFiltre == 7) {
+			filter = new SobelHorizFilter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		} else if (choixFiltre == 8) {
+			filter = new SobelVerticalFilter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		} else if (choixFiltre == 0) {
+			filter = new CustomFilter3x3((choixBordure ==0 ) ? new PaddingZeroStrategy() :new PaddingCircularStrategy() , (choixClamping ==0 ) ? new ImageClampStrategy() :new ImageNormalizeStrategy());
+		}
+		return filter;
+	}
 
 	/**
 	 * @param _coordinates
@@ -39,25 +65,32 @@ public class FilteringTransformer extends AbstractTransformer{
 	 */
 	public void updateKernel(Coordinates _coordinates, float _value) {
 		System.out.println("[" + (_coordinates.getColumn() - 1) + "]["
-                                   + (_coordinates.getRow() - 1) + "] = " 
-                                   + _value);
+				+ (_coordinates.getRow() - 1) + "] = "
+				+ _value);
+
+		if (choixFiltre == 0) {
+			System.out.println("Instance de custom");
+			filter.setCoordinates(_coordinates, _value);
+		}
+
 	}
-		
+
 	/**
-	 * 
 	 * @param e
 	 * @return
 	 */
-	protected boolean mouseClicked(MouseEvent e){
+	protected boolean mouseClicked(MouseEvent e) {
+		Filter filter = FiltreSelection();
 		List intersectedObjects = Selector.getDocumentObjectsAtLocation(e.getPoint());
-		if (!intersectedObjects.isEmpty()) {			
-			Shape shape = (Shape)intersectedObjects.get(0);
-			if (shape instanceof ImageX) {				
-				ImageX currentImage = (ImageX)shape;
+
+		if (!intersectedObjects.isEmpty()) {
+			Shape shape = (Shape) intersectedObjects.get(0);
+			if (shape instanceof ImageX) {
+				ImageX currentImage = (ImageX) shape;
 				ImageDouble filteredImage = filter.filterToImageDouble(currentImage);
 				ImageX filteredDisplayableImage = filter.getImageConversionStrategy().convert(filteredImage);
 				currentImage.beginPixelUpdate();
-				
+
 				for (int i = 0; i < currentImage.getImageWidth(); ++i) {
 					for (int j = 0; j < currentImage.getImageHeight(); ++j) {
 						currentImage.setPixel(i, j, filteredDisplayableImage.getPixelInt(i, j));
@@ -72,21 +105,20 @@ public class FilteringTransformer extends AbstractTransformer{
 	/* (non-Javadoc)
 	 * @see controller.AbstractTransformer#getID()
 	 */
-	public int getID() { return ID_FILTER; }
+	public int getID() {
+		return ID_FILTER;
+	}
 
 	/**
 	 * @param string
 	 */
 	public void setBorder(String string) {
 
-		switch (string){
+		switch (string) {
 			case "Circular":
 				filter.setPaddingStrategy(new PaddingCircularStrategy());
 				break;
 		}
-
-
-
 	}
 
 	/**
@@ -96,3 +128,4 @@ public class FilteringTransformer extends AbstractTransformer{
 		System.out.println(string);
 	}
 }
+
