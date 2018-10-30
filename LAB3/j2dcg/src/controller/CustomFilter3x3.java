@@ -138,9 +138,10 @@ public class CustomFilter3x3 extends Filter {
         return newImage;
     }
 
-    public void setCoordinates(Coordinates _coordinates, float _value){
+    protected void setCoordinates(Coordinates _coordinates, float _value){
+                 System.out.println("AppelSetCoordinates");
                filterMatrix[_coordinates.getColumn() - 1] [_coordinates.getRow() - 1]=_value;
-               //System.out.println("AppelSetCoordinates");
+
 
 
     }

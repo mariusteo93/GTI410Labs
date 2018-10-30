@@ -109,6 +109,8 @@ public class FilterKernelPanel extends JPanel implements ObserverIF {
 			new ActionListener(){
 				public void actionPerformed(ActionEvent ae) {
 					FilterKernelPanel.this.ti.getTheFilter().setBorder((String)_handlingBorderComboBox.getSelectedItem());
+					FilteringTransformer.choixBordure= _handlingBorderComboBox.getSelectedIndex();
+					System.out.println(_handlingBorderComboBox.getSelectedIndex());
 				}	
 			});
 		
@@ -116,6 +118,8 @@ public class FilterKernelPanel extends JPanel implements ObserverIF {
 			new ActionListener(){
 				public void actionPerformed(ActionEvent ae) {
 					FilterKernelPanel.this.ti.getTheFilter().setClamp((String)_clampComboBox.getSelectedItem());
+					FilteringTransformer.choixClamping = _clampComboBox.getSelectedIndex();
+					System.out.println(_clampComboBox.getSelectedIndex());
 				}	
 			});
 		

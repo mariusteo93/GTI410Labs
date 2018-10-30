@@ -65,7 +65,7 @@ public class Filter {
 		return conversionStrategy;
 	}
 
-	public void setCoordinates(Coordinates _coordinates, float _value){
+	protected void setCoordinates(Coordinates _coordinates, float _value){
 
 
 
