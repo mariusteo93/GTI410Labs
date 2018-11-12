@@ -39,11 +39,12 @@ import controller.TransformersIndex;
 /**
  * <p>Title: CurvesPanel</p>
  * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2004 Sébastien Bois, Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Sï¿½bastien Bois, Eric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.9 $
  */
+@SuppressWarnings("LossyEncoding")
 public class CurvesPanel extends JPanel implements DocObserver {
 	private JPanel upperPanel;
 	private JPanel lowerPanel;
