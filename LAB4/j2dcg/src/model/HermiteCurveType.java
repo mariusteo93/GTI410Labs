@@ -53,7 +53,7 @@ public class HermiteCurveType extends CurveType {
         Point t1 = new Point((points[1].x - points[0].x)*buff, (points[1].y - points[0].y)*buff);
         Point t2 = new Point((points[3].x - points[2].x)*buff, (points[3].y - points[2].y)*buff);
 
-        List gVector = Matrix.buildColumnVector4(points[0], points[2], t1, t2);
+        List gVector = Matrix.buildColumnVector4(points[0], points[3], t1, t2);
 
         Point p = Matrix.eval(tVector,matrix,gVector);
         return p;
