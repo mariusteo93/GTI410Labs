@@ -17,23 +17,15 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import model.*;
 import view.Application;
 import view.CurvesPanel;
-
-import model.BezierCurveType;
-import model.ControlPoint;
-import model.Curve;
-import model.CurvesModel;
-import model.DocObserver;
-import model.Document;
-import model.PolylineCurveType;
-import model.Shape;
 
 /**
  * <p>Title: Curves</p>
  * <p>Description: (AbstractTransformer)</p>
- * <p>Copyright: Copyright (c) 2004 Sébastien Bois, Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Sï¿½bastien Bois, Eric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author unascribed
  * @version $Revision: 1.9 $
  */
@@ -102,11 +94,16 @@ public class Curves extends AbstractTransformer implements DocObserver {
 	 */
 	public void setCurveType(String string) {
 		if (string == CurvesModel.BEZIER) {
+            System.out.println("BEZIERCurve");
 			curve.setCurveType(new BezierCurveType(CurvesModel.BEZIER));
 		} else if (string == CurvesModel.LINEAR) {
+            System.out.println("LinearCurve");
 			curve.setCurveType(new PolylineCurveType(CurvesModel.LINEAR));
-		} else {
-			System.out.println("Curve type [" + string + "] is unknown.");
+		} else if (string == CurvesModel.BSPLINE) {
+            System.out.println("BsplineCurve");
+			curve.setCurveType(new BSplineCurveType(CurvesModel.BSPLINE));
+		}else {
+			System.out.println("Curve Unknowed");
 		}
 	}
 	
