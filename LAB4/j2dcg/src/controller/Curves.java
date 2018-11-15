@@ -102,8 +102,10 @@ public class Curves extends AbstractTransformer implements DocObserver {
 		} else if (string == CurvesModel.BSPLINE) {
             System.out.println("BsplineCurve");
 			curve.setCurveType(new BSplineCurveType(CurvesModel.BSPLINE));
-		}else {
-			System.out.println("Curve Unknowed");
+		}else if(string == CurvesModel.HERMITE) {
+			curve.setCurveType(new HermiteCurveType(CurvesModel.HERMITE));
+		} else {
+			System.out.println("Curve type [" + string + "] is unknown.");
 		}
 	}
 	
