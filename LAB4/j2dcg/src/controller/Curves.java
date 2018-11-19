@@ -135,6 +135,8 @@ public class Curves extends AbstractTransformer implements DocObserver {
 					System.out.println("Try to apply C1 continuity on control point [" + controlPointIndex + "]");
 					if (curve.getCurveType() == CurvesModel.HERMITE && isControlPointBetweenSegment(controlPointIndex)){
 						applySymetric(controlPointIndex);
+					}else if (curve.getCurveType() == CurvesModel.BEZIER && isControlPointBetweenSegment(controlPointIndex)) {
+						applySymetric(controlPointIndex);
 					}else{
 						System.out.println("Can't apply C1 continuity: " + curve.getCurveType());
 					}
