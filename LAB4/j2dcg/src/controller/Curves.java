@@ -132,15 +132,12 @@ public class Curves extends AbstractTransformer implements DocObserver {
 				Shape s = (Shape)selectedObjects.get(0);
 				if (curve.getShapes().contains(s)){
 					int controlPointIndex = curve.getShapes().indexOf(s);
-					Shape previous = (Shape) curve.getShapes().get(controlPointIndex-1);
-					Shape middle = (Shape) curve.getShapes().get(controlPointIndex);
-					Shape next = (Shape) curve.getShapes().get(controlPointIndex+1);
-					int x = middle.getCenter().x - previous.getCenter().x + middle.getCenter().x;
-					int y = middle.getCenter().y - previous.getCenter().y + middle.getCenter().y;
-					//next.getCenter().setLocation(previous.getCenter().x, middle.getCenter().y + previous.getCenter().y);
-					next.getCenter().setLocation(x, y);
-					curve.recomputeLineSegments();
 					System.out.println("Try to apply C1 continuity on control point [" + controlPointIndex + "]");
+					if (curve.getCurveType() == CurvesModel.HERMITE && isControlPointBetweenSegment(controlPointIndex)){
+						applySymetric(controlPointIndex);
+					}else{
+						System.out.println("Can't apply C1 continuity: " + curve.getCurveType());
+					}
 				}
 			}
 			
@@ -178,4 +175,25 @@ public class Curves extends AbstractTransformer implements DocObserver {
 	private boolean firstPoint = false;
 	private Curve curve;
 	private CurvesPanel cp;
+
+	private void applySymetric(int controlPointIndex){
+		Shape previous = (Shape) curve.getShapes().get(controlPointIndex-1);
+		Shape middle = (Shape) curve.getShapes().get(controlPointIndex);
+		Shape next = (Shape) curve.getShapes().get(controlPointIndex+1);
+		int x = middle.getCenter().x + (middle.getCenter().x - previous.getCenter().x);
+		int y = middle.getCenter().y + (middle.getCenter().y - previous.getCenter().y);
+		next.getCenter().setLocation(x, y);
+		curve.update();
+	}
+
+	private boolean isControlPointBetweenSegment(int controlPoint){
+		int numSegment = curve.getNumberOfControlPointsPerSegment();
+		int numControlPoints = curve.getShapes().size();
+
+		if (controlPoint == 0 || controlPoint == numControlPoints-1)
+			return false;
+
+		boolean mod = (controlPoint % (numSegment-1) == 0);
+		return mod;
+	}
 }

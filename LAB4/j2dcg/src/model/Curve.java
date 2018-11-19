@@ -33,7 +33,7 @@ import controller.MementoIF;
  * <p>Title: Curve</p>
  * <p>Description: ... (ShapeContainer)</p>
  * <p>Copyright: Copyright (c) 2004 Eric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * @author Eric Paquette
  * @version $Revision: 1.15 $
  */
@@ -167,6 +167,10 @@ public class Curve extends ShapeContainer implements ColoredShapeIF {
 		numberOfSections = i;
 		recomputeLineSegments();
 		notifyObservers();
+	}
+
+	public int getNumberOfControlPointsPerSegment(){
+		return curveType.getNumberOfControlPointsPerSegment();
 	}
 
     public void recomputeLineSegments() {
