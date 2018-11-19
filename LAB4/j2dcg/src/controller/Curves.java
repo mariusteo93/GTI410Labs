@@ -132,6 +132,14 @@ public class Curves extends AbstractTransformer implements DocObserver {
 				Shape s = (Shape)selectedObjects.get(0);
 				if (curve.getShapes().contains(s)){
 					int controlPointIndex = curve.getShapes().indexOf(s);
+					Shape previous = (Shape) curve.getShapes().get(controlPointIndex-1);
+					Shape middle = (Shape) curve.getShapes().get(controlPointIndex);
+					Shape next = (Shape) curve.getShapes().get(controlPointIndex+1);
+					int x = middle.getCenter().x - previous.getCenter().x + middle.getCenter().x;
+					int y = middle.getCenter().y - previous.getCenter().y + middle.getCenter().y;
+					//next.getCenter().setLocation(previous.getCenter().x, middle.getCenter().y + previous.getCenter().y);
+					next.getCenter().setLocation(x, y);
+					curve.recomputeLineSegments();
 					System.out.println("Try to apply C1 continuity on control point [" + controlPointIndex + "]");
 				}
 			}
