@@ -14,10 +14,12 @@
 */
 package controller;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
 import model.*;
+import model.Shape;
 import view.Application;
 import view.CurvesPanel;
 
@@ -118,6 +120,9 @@ public class Curves extends AbstractTransformer implements DocObserver {
 				if (curve.getShapes().contains(s)){
 					int controlPointIndex = curve.getShapes().indexOf(s);
 					System.out.println("Try to apply G1 continuity on control point [" + controlPointIndex + "]");
+					if ((curve.getCurveType() == CurvesModel.HERMITE || curve.getCurveType() == CurvesModel.HERMITE) && isControlPointBetweenSegment(controlPointIndex)) {
+						applyAlligned(controlPointIndex);
+					}
 				}
 			}
 			
@@ -133,6 +138,11 @@ public class Curves extends AbstractTransformer implements DocObserver {
 				if (curve.getShapes().contains(s)){
 					int controlPointIndex = curve.getShapes().indexOf(s);
 					System.out.println("Try to apply C1 continuity on control point [" + controlPointIndex + "]");
+					if (curve.getCurveType() == CurvesModel.HERMITE && isControlPointBetweenSegment(controlPointIndex)){
+						applySymetric(controlPointIndex);
+					}else{
+						System.out.println("Can't apply C1 continuity: " + curve.getCurveType());
+					}
 				}
 			}
 			
@@ -170,4 +180,46 @@ public class Curves extends AbstractTransformer implements DocObserver {
 	private boolean firstPoint = false;
 	private Curve curve;
 	private CurvesPanel cp;
+
+	private void applyAlligned(int controlPointIndex){
+
+
+		if (isControlPointBetweenSegment(controlPointIndex)){
+			Shape previous = (Shape) curve.getShapes().get(controlPointIndex-1);
+			Shape middle = (Shape) curve.getShapes().get(controlPointIndex);
+			Shape next = (Shape) curve.getShapes().get(controlPointIndex+1);
+
+			int x = middle.getCenter().x;
+			int y = middle.getCenter().y;
+			Point p0 = new Point(x,previous.getCenter().y);
+			Point p2 = new Point(x,next.getCenter().y);
+			//previous.setCenter(p0);
+			previous.getCenter().setLocation(x,previous.getCenter().y);
+			next.getCenter().setLocation(x,next.getCenter().y);
+			//next.setCenter(p2);
+			curve.update();
+
+		}
+	}
+
+	private void applySymetric(int controlPointIndex){
+		Shape previous = (Shape) curve.getShapes().get(controlPointIndex-1);
+		Shape middle = (Shape) curve.getShapes().get(controlPointIndex);
+		Shape next = (Shape) curve.getShapes().get(controlPointIndex+1);
+		int x = middle.getCenter().x + (middle.getCenter().x - previous.getCenter().x);
+		int y = middle.getCenter().y + (middle.getCenter().y - previous.getCenter().y);
+		next.getCenter().setLocation(x, y);
+		curve.update();
+	}
+
+	private boolean isControlPointBetweenSegment(int controlPoint){
+		int numSegment = curve.getNumberOfControlPointsPerSegment();
+		int numControlPoints = curve.getShapes().size();
+
+		if (controlPoint == 0 || controlPoint == numControlPoints-1)
+			return false;
+
+		boolean mod = (controlPoint % (numSegment-1) == 0);
+		return mod;
+	}
 }

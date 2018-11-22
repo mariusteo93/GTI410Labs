@@ -34,7 +34,6 @@ public class HermiteCurveType extends CurveType {
 
     @Override
     public ControlPoint getControlPoint(List controlPoints, int segmentNumber, int controlPointNumber) {
-        //int controlPointIndex = segmentNumber * 3 + controlPointNumber;
         int controlPointIndex = segmentNumber * 3 + controlPointNumber;
         return (ControlPoint)controlPoints.get(controlPointIndex);
     }
@@ -43,17 +42,16 @@ public class HermiteCurveType extends CurveType {
     public Point evalCurveAt(List controlPoints, double t) {
         List tVector = Matrix.buildRowVector4(t*t*t, t*t, t, 1);
 
-        Point[] points = new Point[4];
-
-        for(int i=0 ; i < 4 ; i++){
-            points[i] = ((ControlPoint)controlPoints.get(i)).getCenter();
-        }
+        Point p0 = ((ControlPoint) controlPoints.get(0)).getCenter();
+        Point p1 = ((ControlPoint) controlPoints.get(1)).getCenter();
+        Point p2 = ((ControlPoint) controlPoints.get(2)).getCenter();
+        Point p3 = ((ControlPoint) controlPoints.get(3)).getCenter();
 
         int buff = 5;
-        Point t1 = new Point((points[1].x - points[0].x)*buff, (points[1].y - points[0].y)*buff);
-        Point t2 = new Point((points[3].x - points[2].x)*buff, (points[3].y - points[2].y)*buff);
+        Point t1 = new Point((p1.x - p0.x)*buff, (p1.y - p0.y)*buff);
+        Point t2 = new Point((p3.x - p2.x)*buff, (p3.y - p2.y)*buff);
 
-        List gVector = Matrix.buildColumnVector4(points[0], points[3], t1, t2);
+        List gVector = Matrix.buildColumnVector4(p0, p3, t1, t2);
 
         Point p = Matrix.eval(tVector,matrix,gVector);
         return p;
