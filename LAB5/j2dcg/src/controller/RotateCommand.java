@@ -14,13 +14,18 @@
 */
 package controller;
 
+import model.Shape;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * <p>Title: RotateCommand</p>
  * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2004 Jean-François Barras, Éric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Jean-Franï¿½ois Barras, ï¿½ric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * <p>Created on: 2004-03-19</p>
  * @version $Revision: 1.2 $
  */
@@ -45,7 +50,49 @@ public class RotateCommand extends AnchoredTransformationCommand {
 		System.out.println("command: rotate " + thetaDegrees +
                            " degrees around " + getAnchor() + ".");
 
-		// voluntarily undefined
+		Iterator iter = objects.iterator();
+		Shape shape;
+		Point rotationPoint = new Point();
+
+		while(iter.hasNext()){
+			shape = (Shape)iter.next();
+			mt.addMememto(shape);
+
+			switch (getAnchor()){
+				case TOP_LEFT:
+					rotationPoint.setLocation(shape.getRectangle().getX(),shape.getRectangle().getY());
+					break;
+				case TOP_CENTER:
+					rotationPoint.setLocation(shape.getRectangle().getX() + shape.getRectangle().width/2, shape.getRectangle().getY());
+					break;
+				case TOP_RIGHT:
+					rotationPoint.setLocation(shape.getRectangle().getX() + shape.getRectangle().width, shape.getRectangle().getY());
+					break;
+				case MIDDLE_LEFT:
+					rotationPoint.setLocation(shape.getRectangle().getX(), shape.getRectangle().getY() + shape.getRectangle().height/2);
+					break;
+				case CENTER:
+					rotationPoint.setLocation(shape.getRectangle().getX() + shape.getRectangle().width/2, shape.getRectangle().getY() +  shape.getRectangle().height/2);
+					break;
+				case MIDDLE_RIGHT:
+					rotationPoint.setLocation(shape.getRectangle().getX() + shape.getRectangle().width, shape.getRectangle().getY() + shape.getRectangle().height/2);
+					break;
+				case BOTTOM_LEFT:
+					rotationPoint.setLocation(shape.getRectangle().getX(), shape.getRectangle().getY() + shape.getRectangle().height);
+					break;
+				case BOTTOM_CENTER:
+					rotationPoint.setLocation(shape.getRectangle().getX() + shape.getRectangle().width/2, shape.getRectangle().getY() + shape.getRectangle().height);
+					break;
+				case BOTTOM_RIGHT:
+					rotationPoint.setLocation(shape.getRectangle().getX() + shape.getRectangle().width, shape.getRectangle().getY() + shape.getRectangle().height);
+					break;
+					default:
+						System.out.println("No rotation anchor no valid");
+			}
+			AffineTransform t = shape.getAffineTransform();
+			t.rotate(Math.toRadians(thetaDegrees), rotationPoint.getX(), rotationPoint.getY());
+			shape.setAffineTransform(t);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -58,5 +105,4 @@ public class RotateCommand extends AnchoredTransformationCommand {
 	private MementoTracker mt = new MementoTracker();
 	private List objects;
 	private double thetaDegrees;
-	
 }
