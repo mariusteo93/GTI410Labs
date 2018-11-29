@@ -14,44 +14,36 @@
 */
 package controller;
 
-import java.awt.geom.AffineTransform;
-import java.util.Iterator;
 import java.util.List;
 
-import model.Shape;
-
 /**
- * <p>Title: TranslateCommand</p>
+ * <p>Title: ShearYCommand</p>
  * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2004 Eric Paquette</p>
- * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
- * <p>Created on: 2004-03-15</p>
- * @author Eric Paquette
- * @version $Revision: 1.2 $
+ * <p>Copyright: Copyright (c) 2004 Jean-François Barras, Éric Paquette</p>
+ * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Created on: 2004-03-19</p>
+ * @version $Revision: 1.4 $
  */
-public class TranslateCommand extends Command {
+public class ShearYCommand extends AnchoredTransformationCommand {
 
-	public TranslateCommand(int aX, int aY, List aObjects) {
-		x = aX;
-		y = aY;
+	/**
+	 * @param angleDegrees The angle to which the horizontal lines will be transformed.
+	 * @param anchor one of the predefined positions for the anchor point
+	 */
+	public ShearYCommand(double angleDegrees, int anchor, List aObjects) {
+		super(anchor);
+		this.angleDegrees = angleDegrees;
 		objects = aObjects;
 	}
+	
 	/* (non-Javadoc)
 	 * @see controller.Command#execute()
 	 */
 	public void execute() {
-		Iterator iter = objects.iterator();
-		Shape shape;
-		while(iter.hasNext()){
-			shape = (Shape)iter.next();
-			mt.addMememto(shape);
-			AffineTransform t = shape.getAffineTransform();
-			t.translate(x,y);
-			shape.setAffineTransform(t);
-			int height  = shape.getRectangle().height;
-			int width = shape.getRectangle().width;
-			System.out.println(height + " " + width);
-		}
+		System.out.println("command: shearing on y-axis to " + angleDegrees +
+				           " degrees anchored on " + getAnchor());
+				           		
+		// voluntarily undefined
 	}
 
 	/* (non-Javadoc)
@@ -63,6 +55,6 @@ public class TranslateCommand extends Command {
 
 	private MementoTracker mt = new MementoTracker();
 	private List objects;
-	private int x;
-	private int y;
+	private double angleDegrees;
+
 }

@@ -14,55 +14,44 @@
 */
 package controller;
 
-import java.awt.geom.AffineTransform;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.Shape;
 
 /**
- * <p>Title: TranslateCommand</p>
+ * <p>Title: MementoTracker</p>
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2004 Eric Paquette</p>
- * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
+ * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
  * <p>Created on: 2004-03-15</p>
  * @author Eric Paquette
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
-public class TranslateCommand extends Command {
+public class MementoTracker {
 
-	public TranslateCommand(int aX, int aY, List aObjects) {
-		x = aX;
-		y = aY;
-		objects = aObjects;
-	}
-	/* (non-Javadoc)
-	 * @see controller.Command#execute()
+	/**
+	 * @param shape
 	 */
-	public void execute() {
-		Iterator iter = objects.iterator();
-		Shape shape;
-		while(iter.hasNext()){
-			shape = (Shape)iter.next();
-			mt.addMememto(shape);
-			AffineTransform t = shape.getAffineTransform();
-			t.translate(x,y);
-			shape.setAffineTransform(t);
-			int height  = shape.getRectangle().height;
-			int width = shape.getRectangle().width;
-			System.out.println(height + " " + width);
+	public void addMememto(Shape shape) {
+		shapes.add(shape);
+		mementos.add(shape.createMemento());
+	}
+
+	/**
+	 * 
+	 */
+	public void setBackMementos() {
+		Iterator iShape = shapes.iterator();
+		Iterator iMemento = mementos.iterator();
+		while (iShape.hasNext()) {
+			Shape shape = (Shape)iShape.next();
+			MementoIF memento = (MementoIF)iMemento.next();
+			shape.setMemento(memento); 
 		}
 	}
-
-	/* (non-Javadoc)
-	 * @see controller.Command#undo()
-	 */
-	public void undo() {
-		mt.setBackMementos();
-	}
-
-	private MementoTracker mt = new MementoTracker();
-	private List objects;
-	private int x;
-	private int y;
+	
+	private List shapes = new LinkedList();
+	private List mementos = new LinkedList();
 }
