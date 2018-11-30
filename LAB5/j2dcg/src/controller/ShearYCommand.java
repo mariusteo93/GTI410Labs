@@ -14,13 +14,18 @@
 */
 package controller;
 
+import model.Shape;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * <p>Title: ShearYCommand</p>
  * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2004 Jean-François Barras, Éric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Jean-Franï¿½ois Barras, ï¿½ric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * <p>Created on: 2004-03-19</p>
  * @version $Revision: 1.4 $
  */
@@ -42,8 +47,49 @@ public class ShearYCommand extends AnchoredTransformationCommand {
 	public void execute() {
 		System.out.println("command: shearing on y-axis to " + angleDegrees +
 				           " degrees anchored on " + getAnchor());
-				           		
-		// voluntarily undefined
+
+		Point anchor = getAnchorPoint(objects);
+
+		Iterator iter = objects.iterator();
+		Shape shape;
+
+		while(iter.hasNext()) {
+			shape = (Shape) iter.next();
+			mt.addMememto(shape);
+			AffineTransform t = shape.getAffineTransform();
+
+			switch (getAnchor()){
+				case TOP_LEFT:
+				case MIDDLE_LEFT:
+				case BOTTOM_LEFT:
+					t.shear(0,Math.toRadians(angleDegrees));
+					break;
+				case TOP_CENTER:
+				case CENTER:
+				case BOTTOM_CENTER:
+					double hypo = shape.getRectangle().width / Math.cos(Math.toRadians(angleDegrees));
+					double oppose = hypo * Math.sin(Math.toRadians(angleDegrees));
+					t.shear(0,Math.toRadians(angleDegrees));
+					t.translate(shape.getRectangle().getX(), shape.getRectangle().getY()-(oppose/2));
+					break;
+				case TOP_RIGHT:
+				case MIDDLE_RIGHT:
+				case BOTTOM_RIGHT:
+					//Flip horizontal
+					t.translate(shape.getRectangle().width,0);
+					t.scale(-1,1);
+					//Shear
+					t.shear(0,Math.toRadians(angleDegrees));
+					//Flip horizontal
+					t.translate(shape.getRectangle().width,0);
+					t.scale(-1,1);
+					break;
+					default:
+						System.out.println("Anchor not supported");
+			}
+			shape.setAffineTransform(t);
+		}
+
 	}
 
 	/* (non-Javadoc)
