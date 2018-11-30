@@ -19,8 +19,8 @@ import java.util.List;
 /**
  * <p>Title: ShearXCommand</p>
  * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2004 Jean-François Barras, Éric Paquette</p>
- * <p>Company: (ÉTS) - École de Technologie Supérieure</p>
+ * <p>Copyright: Copyright (c) 2004 Jean-Franï¿½ois Barras, ï¿½ric Paquette</p>
+ * <p>Company: (ï¿½TS) - ï¿½cole de Technologie Supï¿½rieure</p>
  * <p>Created on: 2004-03-19</p>
  * @version $Revision: 1.4 $
  */
@@ -45,6 +45,8 @@ public class ShearXCommand extends AnchoredTransformationCommand {
 				           " degrees anchored on " + getAnchor());
 		
 		// voluntarily undefined
+
+
 	}
 
 	/* (non-Javadoc)

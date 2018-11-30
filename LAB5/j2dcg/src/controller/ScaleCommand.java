@@ -54,15 +54,43 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 		Shape shape;
 
 		while (iter.hasNext()){
+			AffineTransform t;
 			shape = (Shape)iter.next();
-			int height  = shape.getRectangle().height;
+			Point anchor1 = getAnchorPoint(objects);
 			int width = shape.getRectangle().width;
-
-			System.out.println(height + " " + width);
+			//int d = (int) ((width * sx) - width);
+			//System.out.println(height + " " + width);
 			mt.addMememto(shape);
-			AffineTransform t = shape.getAffineTransform();
+			t = shape.getAffineTransform();
+
+			double x1 = anchor1.x;
+			double y1 = anchor1.y;
+			double x2 = x1 * sx;
+			double y2 = y1 * sy;
+			double dx =0;
+			double dy =0;
+			System.out.print(getAnchor());
+			if (getAnchor()== TOP_LEFT || getAnchor() == BOTTOM_LEFT || getAnchor()==MIDDLE_LEFT){
+				dx = 0;
+			}else if(getAnchor()== CENTER || getAnchor() == TOP_CENTER || getAnchor() == BOTTOM_CENTER){
+				dx = (x1 - x2) / sx;
+			}else{
+				dx =  x1 - x2;
+			}
+			/**
+			if (getAnchor()== TOP_LEFT || getAnchor() == BOTTOM_LEFT || getAnchor()==MIDDLE_LEFT){
+				dx = 0;
+			}else if(getAnchor()== CENTER || getAnchor() == TOP_CENTER || getAnchor() == BOTTOM_CENTER){
+				dx = (x1 - x2) /sx;
+			}else{
+				dx = x1 - x2;
+			}
+			 */
+
 
 			t.scale(sx,sy);
+			t.translate(dx,y1);
+
 			shape.setAffineTransform(t);
 
 		}
@@ -78,7 +106,7 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 	public void undo() {
 		mt.setBackMementos();
 	}
-
+/*
 	public Point getAnchorPoint(Shape shape){
 
 		Point p = null;
@@ -99,6 +127,7 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 		return p;
 
 	}
+	*/
 	private MementoTracker mt = new MementoTracker();
 	private List objects;
 	private double sx;
