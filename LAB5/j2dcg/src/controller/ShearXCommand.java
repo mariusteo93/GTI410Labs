@@ -14,6 +14,11 @@
 */
 package controller;
 
+import model.Shape;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -43,7 +48,49 @@ public class ShearXCommand extends AnchoredTransformationCommand {
 
 		System.out.println("command: shearing on x-axis by " + angleDegrees +
 				           " degrees anchored on " + getAnchor());
-		
+
+		Point anchor = getAnchorPoint(objects);
+
+		Iterator iter = objects.iterator();
+		model.Shape shape;
+
+		while(iter.hasNext()) {
+			shape = (Shape) iter.next();
+			mt.addMememto(shape);
+			AffineTransform t = shape.getAffineTransform();
+
+			switch (getAnchor()){
+				case TOP_LEFT:
+				case MIDDLE_LEFT:
+				case BOTTOM_LEFT:
+					t.shear(Math.toRadians(angleDegrees),0);
+					break;
+				case TOP_CENTER:
+				case CENTER:
+				case BOTTOM_CENTER:
+					double hypo = shape.getRectangle().width / Math.cos(Math.toRadians(angleDegrees));
+					double oppose = hypo * Math.sin(Math.toRadians(angleDegrees));
+					t.shear(Math.toRadians(angleDegrees),0);
+					t.translate(shape.getRectangle().getX(), shape.getRectangle().getY()-(oppose/2));
+					break;
+				case TOP_RIGHT:
+				case MIDDLE_RIGHT:
+				case BOTTOM_RIGHT:
+					//Flip horizontal
+					t.translate(shape.getRectangle().width,0);
+					t.scale(-1,1);
+					//Shear
+					t.shear(Math.toRadians(angleDegrees),0);
+					//Flip horizontal
+					t.translate(shape.getRectangle().width,0);
+					t.scale(-1,1);
+					break;
+				default:
+					System.out.println("Anchor not supported");
+			}
+			shape.setAffineTransform(t);
+		}
+
 		// voluntarily undefined
 
 

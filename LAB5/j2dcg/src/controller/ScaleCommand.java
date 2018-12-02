@@ -58,6 +58,7 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 			shape = (Shape)iter.next();
 			Point anchor1 = getAnchorPoint(objects);
 			int width = shape.getRectangle().width;
+			int height = shape.getRectangle().height;
 			//int d = (int) ((width * sx) - width);
 			//System.out.println(height + " " + width);
 			mt.addMememto(shape);
@@ -75,21 +76,21 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 			}else if(getAnchor()== CENTER || getAnchor() == TOP_CENTER || getAnchor() == BOTTOM_CENTER){
 				dx = (x1 - x2) / sx;
 			}else{
-				dx =  x1 - x2;
+				dx =  -(width/2);
 			}
-			/**
-			if (getAnchor()== TOP_LEFT || getAnchor() == BOTTOM_LEFT || getAnchor()==MIDDLE_LEFT){
-				dx = 0;
-			}else if(getAnchor()== CENTER || getAnchor() == TOP_CENTER || getAnchor() == BOTTOM_CENTER){
-				dx = (x1 - x2) /sx;
+
+			if (getAnchor()== TOP_LEFT || getAnchor() == TOP_CENTER || getAnchor()==TOP_RIGHT){
+				dy = 0;
+			}else if(getAnchor()== CENTER || getAnchor() == MIDDLE_LEFT || getAnchor() == MIDDLE_RIGHT){
+				dy = (y1-y2) /sy;
 			}else{
-				dx = x1 - x2;
+				dy = -(height/2);
 			}
-			 */
+
 
 
 			t.scale(sx,sy);
-			t.translate(dx,y1);
+			t.translate(dx,dy);
 
 			shape.setAffineTransform(t);
 
