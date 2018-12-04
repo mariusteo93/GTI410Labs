@@ -40,14 +40,14 @@ public class ShearXCommand extends AnchoredTransformationCommand {
 		this.angleDegrees = angleDegrees;
 		objects = aObjects;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see controller.Command#execute()
 	 */
 	public void execute() {
 
 		System.out.println("command: shearing on x-axis by " + angleDegrees +
-				           " degrees anchored on " + getAnchor());
+				" degrees anchored on " + getAnchor());
 
 		Point anchor = getAnchorPoint(objects);
 
@@ -61,39 +61,30 @@ public class ShearXCommand extends AnchoredTransformationCommand {
 
 			switch (getAnchor()){
 				case TOP_LEFT:
-				case MIDDLE_LEFT:
-				case BOTTOM_LEFT:
+				case TOP_CENTER:
+				case TOP_RIGHT:
 					t.shear(Math.toRadians(angleDegrees),0);
 					break;
-				case TOP_CENTER:
-				case CENTER:
+				case BOTTOM_LEFT:
 				case BOTTOM_CENTER:
-					double hypo = shape.getRectangle().width / Math.cos(Math.toRadians(angleDegrees));
+				case BOTTOM_RIGHT:
+				case MIDDLE_LEFT:
+				case CENTER:
+				case MIDDLE_RIGHT:
+					double hypo = shape.getRectangle().height / Math.cos(Math.toRadians(angleDegrees));
 					double oppose = hypo * Math.sin(Math.toRadians(angleDegrees));
 					t.shear(Math.toRadians(angleDegrees),0);
-					t.translate(shape.getRectangle().getX(), shape.getRectangle().getY()-(oppose/2));
-					break;
-				case TOP_RIGHT:
-				case MIDDLE_RIGHT:
-				case BOTTOM_RIGHT:
-					//Flip horizontal
-					t.translate(shape.getRectangle().width,0);
-					t.scale(-1,1);
-					//Shear
-					t.shear(Math.toRadians(angleDegrees),0);
-					//Flip horizontal
-					t.translate(shape.getRectangle().width,0);
-					t.scale(-1,1);
+					if(getAnchor() == BOTTOM_CENTER || getAnchor() == BOTTOM_LEFT || getAnchor() == BOTTOM_RIGHT){
+						t.translate(shape.getRectangle().getX()-oppose,shape.getRectangle().getY());
+					} else {
+						t.translate(shape.getRectangle().getX()-(oppose/2),shape.getRectangle().getY());
+					}
 					break;
 				default:
 					System.out.println("Anchor not supported");
 			}
 			shape.setAffineTransform(t);
 		}
-
-		// voluntarily undefined
-
-
 	}
 
 	/* (non-Javadoc)
