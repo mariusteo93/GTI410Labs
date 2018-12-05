@@ -47,52 +47,18 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 	 * @see controller.Command#execute()
 	 */
 	public void execute() {
-		System.out.println("command: scaling x by " + sx +
-                           " and y by " + sy + " ; anchored on " + getAnchor() );
 
 		Iterator iter = objects.iterator();
 		Shape shape;
-
-		while (iter.hasNext()){
-			AffineTransform t;
+		while(iter.hasNext()){
 			shape = (Shape)iter.next();
-			Point anchor1 = getAnchorPoint(objects);
-			int width = shape.getRectangle().width;
-			int height = shape.getRectangle().height;
-			//int d = (int) ((width * sx) - width);
-			//System.out.println(height + " " + width);
-			mt.addMememto(shape);
-			t = shape.getAffineTransform();
 
-			double x1 = anchor1.x;
-			double y1 = anchor1.y;
-			double x2 = x1 * sx;
-			double y2 = y1 * sy;
-			double dx =0;
-			double dy =0;
-			System.out.print(getAnchor());
-			if (getAnchor()== TOP_LEFT || getAnchor() == BOTTOM_LEFT || getAnchor()==MIDDLE_LEFT){
-				dx = 0;
-			}else if(getAnchor()== CENTER || getAnchor() == TOP_CENTER || getAnchor() == BOTTOM_CENTER){
-				dx = (x1 - x2) / sx;
-			}else{
-				dx =  -(width/2);
-			}
-
-			if (getAnchor()== TOP_LEFT || getAnchor() == TOP_CENTER || getAnchor()==TOP_RIGHT){
-				dy = 0;
-			}else if(getAnchor()== CENTER || getAnchor() == MIDDLE_LEFT || getAnchor() == MIDDLE_RIGHT){
-				dy = (y1-y2) /sy;
-			}else{
-				dy = -(height/2);
-			}
-
-
-
+			AffineTransform t = shape.getAffineTransform();
+			t.translate(getAnchorPoint(objects).x,getAnchorPoint(objects).y);
 			t.scale(sx,sy);
-			t.translate(dx,dy);
-
+			t.translate(-getAnchorPoint(objects).x,-getAnchorPoint(objects).y);
 			shape.setAffineTransform(t);
+
 
 		}
 
@@ -107,28 +73,8 @@ public class ScaleCommand extends AnchoredTransformationCommand {
 	public void undo() {
 		mt.setBackMementos();
 	}
-/*
-	public Point getAnchorPoint(Shape shape){
-
-		Point p = null;
-		int anchorNumber = getAnchor();
-
-		if (anchorNumber == 0){
-			 p = new Point((int) shape.getRectangle().getMinX(), (int)shape.getRectangle().getMinY());
-		}else if ( anchorNumber ==1){
-			p = new Point((int) shape.getRectangle().getMaxX()/2, (int)shape.getRectangle().getMinY());
-		}else if (anchorNumber ==2){
-			p = new Point((int) shape.getRectangle().getMaxX(), (int)shape.getRectangle().getMinY());
-		}
 
 
-
-
-
-		return p;
-
-	}
-	*/
 	private MementoTracker mt = new MementoTracker();
 	private List objects;
 	private double sx;
